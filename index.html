@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,10 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FunMaker1404 — Studio+ Complet</title>
 <style>
-  :root{
-    --bg:#0b0b11; --bg2:#0e0e15; --card:#12131a; --muted:#aab; --text:#eef;
-    --brand:#7c3aed; --brand2:#22d3ee; --ok:#10b981; --bad:#ef4444; --border:#242636;
-  }
+  :root{ --bg:#0b0b11; --bg2:#0e0e15; --card:#12131a; --muted:#aab; --text:#eef;
+         --brand:#7c3aed; --brand2:#22d3ee; --ok:#10b981; --bad:#ef4444; --border:#242636; }
   *{box-sizing:border-box} html,body{height:100%}
   body{margin:0;background:radial-gradient(1200px 800px at 10% -10%, rgba(124,58,237,.25), transparent),
                       radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.2), transparent),
@@ -21,14 +20,10 @@
   .muted{color:var(--muted);font-size:12px}
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   select,input,textarea,button{border:1px solid var(--border);background:#0f1118;color:var(--text);border-radius:12px;padding:10px 12px}
-  input[type="number"]{width:140px}
-  textarea{width:100%;min-height:110px}
-  button{cursor:pointer}
-  .btn{background:#1a1c27}
-  .btn:hover{filter:brightness(1.1)}
+  input[type="number"]{width:140px} textarea{width:100%;min-height:110px}
+  button{cursor:pointer} .btn{background:#1a1c27} .btn:hover{filter:brightness(1.1)}
   .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#041014; border:none; font-weight:700}
-  .grid{display:grid;gap:16px}
-  @media(min-width:980px){ .grid-2{grid-template-columns:1fr 1fr} }
+  .grid{display:grid;gap:16px} @media(min-width:980px){ .grid-2{grid-template-columns:1fr 1fr} }
   .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01)); border:1px solid var(--border);
         border-radius:18px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
   .card h2{margin:0 0 8px 0; font-size:16px}
@@ -36,18 +31,14 @@
   .opt{display:block;width:100%;text-align:left;margin:6px 0;padding:10px;border-radius:10px;border:1px solid #1f2130;background:#121424}
   .opt.ok{background:var(--ok);color:#041014;border-color:transparent}
   .opt.bad{background:var(--bad);color:#041014;border-color:transparent}
-  .kpi{display:flex;gap:8px;align-items:center;font-size:12px}
-  .kpi b{font-size:14px}
+  .kpi{display:flex;gap:8px;align-items:center;font-size:12px} .kpi b{font-size:14px}
   .bar{height:8px;background:#222538;border-radius:999px;overflow:hidden}
   .bar>div{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2))}
   .code{background:#0c0f18;border:1px solid #1e2233;border-radius:12px;padding:10px;white-space:pre-wrap}
-  .center{display:grid;place-items:center}
-  .tag{font-size:11px;opacity:.8}
-  .wheelWrap{position:relative;width:260px;height:260px}
-  .pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);font-size:22px}
+  .center{display:grid;place-items:center} .tag{font-size:11px;opacity:.8}
+  .wheelWrap{position:relative;width:260px;height:260px} .pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);font-size:22px}
   .wheel{width:100%;height:100%;border-radius:50%;border:1px solid var(--border);background:#0f1118}
-  .logoSvg{width:48px;height:48px}
-  img.preview{max-width:100%;border-radius:12px;border:1px solid var(--border)}
+  .logoSvg{width:48px;height:48px} img.preview{max-width:100%;border-radius:12px;border:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -58,22 +49,16 @@
         <svg class="logoSvg" viewBox="0 0 100 100" role="img" aria-label="Logo ninja">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#7c3aed"/>
-              <stop offset="1" stop-color="#22d3ee"/>
+              <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#22d3ee"/>
             </linearGradient>
             <radialGradient id="glow" cx="50%" cy="50%" r="60%">
-              <stop offset="0" stop-color="rgba(255,255,255,0.35)"/>
-              <stop offset="1" stop-color="rgba(255,255,255,0)"/>
+              <stop offset="0" stop-color="rgba(255,255,255,0.35)"/><stop offset="1" stop-color="rgba(255,255,255,0)"/>
             </radialGradient>
-            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="1.2"/>
-            </filter>
+            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
           </defs>
           <circle cx="50" cy="50" r="46" fill="url(#g1)" />
           <circle cx="50" cy="50" r="42" fill="#0f1118" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
-          <g fill="url(#g1)" opacity="0.95">
-            <path d="M50 16 L56 40 L84 50 L56 60 L50 84 L44 60 L16 50 L44 40 Z" />
-          </g>
+          <g fill="url(#g1)" opacity="0.95"><path d="M50 16 L56 40 L84 50 L56 60 L50 84 L44 60 L16 50 L44 40 Z" /></g>
           <path d="M57 24 L45 52 L60 52 L43 78 L52 56 L38 56 Z"
                 fill="#22d3ee" stroke="#7c3aed" stroke-width="1.2" filter="url(#soft)" opacity="0.95"/>
           <circle cx="36" cy="34" r="14" fill="url(#glow)" opacity="0.6"/>
@@ -85,12 +70,8 @@
       </div>
       <div class="row">
         <select id="level">
-          <option value="Primaire">Primaire</option>
-          <option value="6e" selected>6e</option>
-          <option value="5e">5e</option>
-          <option value="4e">4e</option>
-          <option value="3e">3e</option>
-          <option value="Lycée">Lycée</option>
+          <option value="Primaire">Primaire</option><option value="6e" selected>6e</option>
+          <option value="5e">5e</option><option value="4e">4e</option><option value="3e">3e</option><option value="Lycée">Lycée</option>
         </select>
         <select id="subject">
           <option>Maths</option><option>Français</option><option>Anglais</option><option>Sciences</option>
@@ -215,7 +196,7 @@
     </div>
 
     <section class="card center muted" style="margin-top:14px">
-      Logo original inspiré (ninja/éclair/shuriken). Démo hors-ligne (local). Pour un site public, laisse ce fichier ici sur GitHub Pages.
+      Logo original inspiré (ninja/éclair/shuriken). Démo locale. Laisse ce fichier ici sur GitHub Pages pour le site public.
     </section>
   </div>
 
