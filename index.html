@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FunMaker Studio+ — avec logo</title>
+<title>FunMaker1404 — Studio+ Complet</title>
 <style>
   :root{
     --bg:#0b0b11; --bg2:#0e0e15; --card:#12131a; --muted:#aab; --text:#eef;
@@ -14,19 +14,21 @@
                       radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.2), transparent),
                       linear-gradient(180deg,var(--bg),var(--bg2));
        color:var(--text); font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  .shell{max-width:1080px;margin:0 auto;padding:20px}
+  .shell{max-width:1150px;margin:0 auto;padding:20px}
   header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}
   .logoWrap{display:flex;gap:10px;align-items:center}
   .title{font-weight:800;font-size:20px;letter-spacing:.3px}
   .muted{color:var(--muted);font-size:12px}
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   select,input,textarea,button{border:1px solid var(--border);background:#0f1118;color:var(--text);border-radius:12px;padding:10px 12px}
+  input[type="number"]{width:140px}
+  textarea{width:100%;min-height:110px}
   button{cursor:pointer}
   .btn{background:#1a1c27}
   .btn:hover{filter:brightness(1.1)}
   .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#041014; border:none; font-weight:700}
   .grid{display:grid;gap:16px}
-  @media(min-width:900px){ .grid-2{grid-template-columns:1fr 1fr} }
+  @media(min-width:980px){ .grid-2{grid-template-columns:1fr 1fr} }
   .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01)); border:1px solid var(--border);
         border-radius:18px; padding:16px; box-shadow:0 10px 30px rgba(0,0,0,.25)}
   .card h2{margin:0 0 8px 0; font-size:16px}
@@ -45,13 +47,14 @@
   .pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);font-size:22px}
   .wheel{width:100%;height:100%;border-radius:50%;border:1px solid var(--border);background:#0f1118}
   .logoSvg{width:48px;height:48px}
+  img.preview{max-width:100%;border-radius:12px;border:1px solid var(--border)}
 </style>
 </head>
 <body>
   <div class="shell">
     <header>
       <div class="logoWrap">
-        <!-- Logo ninja/éclair/shuriken -->
+        <!-- Logo ninja / shuriken + éclair -->
         <svg class="logoSvg" viewBox="0 0 100 100" role="img" aria-label="Logo ninja">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
@@ -75,10 +78,9 @@
                 fill="#22d3ee" stroke="#7c3aed" stroke-width="1.2" filter="url(#soft)" opacity="0.95"/>
           <circle cx="36" cy="34" r="14" fill="url(#glow)" opacity="0.6"/>
         </svg>
-        <!-- Pseudo -->
         <div>
           <div class="title">FunMaker1404</div>
-          <div class="muted">Quiz • Entraînement • Roue • Sondage • Timer • Langues • Programmation</div>
+          <div class="muted">Quiz • Entraînement • Texte & Image • Roue • Sondage • Tirage • Timer • Langues • Programmation</div>
         </div>
       </div>
       <div class="row">
@@ -98,14 +100,297 @@
       </div>
     </header>
 
-    <!-- … le reste du site (quiz, entraînement, roue, sondage, etc.) est inchangé -->
+    <div class="grid grid-2">
+      <!-- Quiz prédéfinis -->
+      <section class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2>📝 Quiz prédéfinis</h2><span class="pill" id="quizMeta">6e • Maths</span>
+        </div>
+        <div id="quizQ"></div>
+        <div id="quizChoices"></div>
+        <div class="row">
+          <button class="btn" id="prevQuiz">◀ Préc.</button>
+          <span class="muted" id="quizIndex">1/1</span>
+          <button class="btn" id="nextQuiz">Suiv. ▶</button>
+        </div>
+      </section>
+
+      <!-- Entraînement intelligent -->
+      <section class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2>⚡ Entraînement intelligent</h2>
+          <button class="btn primary" id="trainStart">Lancer 10 questions</button>
+        </div>
+        <div id="trainZone"></div>
+      </section>
+
+      <!-- Bloc Texte & Image -->
+      <section class="card">
+        <h2>✍️ Bloc Texte & Image (prévisualisation)</h2>
+        <textarea id="textArea" placeholder="Écris ici ton texte…"></textarea>
+        <div class="row">
+          <input id="imgUrl" placeholder="URL d'image (optionnel)" />
+          <button class="btn primary" id="addRender">Ajouter au rendu</button>
+          <button class="btn" id="clearRender">Effacer</button>
+        </div>
+        <div id="renderZone" class="card" style="margin-top:8px;background:rgba(255,255,255,.03)"></div>
+      </section>
+
+      <!-- Roue -->
+      <section class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2>🎡 Roue de tirage</h2><span class="tag">Tape 3–8 options</span>
+        </div>
+        <div class="row">
+          <input class="wheelOpt" placeholder="Option 1" />
+          <input class="wheelOpt" placeholder="Option 2" />
+          <input class="wheelOpt" placeholder="Option 3" />
+          <input class="wheelOpt" placeholder="Option 4" />
+          <input class="wheelOpt" placeholder="Option 5" />
+          <input class="wheelOpt" placeholder="Option 6" />
+        </div>
+        <div class="center" style="margin-top:8px">
+          <div class="wheelWrap">
+            <div class="pin">▼</div>
+            <svg id="wheel" class="wheel" viewBox="0 0 100 100"></svg>
+          </div>
+        </div>
+        <div class="row center" style="margin-top:8px">
+          <button class="btn primary" id="spin">Lancer la roue</button>
+          <span class="muted" id="winner"></span>
+        </div>
+      </section>
+
+      <!-- Sondage -->
+      <section class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2>📊 Sondage</h2><span class="tag">Local (démo)</span>
+        </div>
+        <input id="pollTitle" placeholder="Titre du sondage" />
+        <div id="poll"></div>
+      </section>
+
+      <!-- Tirage simple -->
+      <section class="card">
+        <h2>🎲 Tirage au sort</h2>
+        <div class="row">
+          <input id="drawInput" placeholder="Entrer des noms séparés par une virgule" />
+          <button class="btn primary" id="drawBtn">Tirer</button>
+        </div>
+        <div class="kpi"><span class="muted">Gagnant :</span><b id="drawOut">—</b></div>
+      </section>
+
+      <!-- Timer -->
+      <section class="card">
+        <h2>⏰ Compte à rebours</h2>
+        <div class="row">
+          <input id="timerMin" type="number" placeholder="Minutes" />
+          <button class="btn primary" id="timerGo">Démarrer</button>
+        </div>
+        <div class="kpi"><span class="muted">Temps restant :</span><b id="timer">00:00</b></div>
+      </section>
+
+      <!-- Langues -->
+      <section class="card">
+        <h2>🌍 Langues — mini-exos</h2>
+        <div class="muted">Traduire en anglais : <b id="langWord">chat</b></div>
+        <div class="row">
+          <button class="btn" data-ans="cat">cat</button>
+          <button class="btn" data-ans="dog">dog</button>
+          <button class="btn" data-ans="car">car</button>
+        </div>
+        <div id="langMsg" class="muted"></div>
+      </section>
+
+      <!-- Programmation -->
+      <section class="card">
+        <h2>💻 Programmation (JS)</h2>
+        <textarea id="code" rows="6" class="code">// Essaie :
+// 1) 2+2
+// 2) ['a','b','c'].map(x=>x.toUpperCase())
+// 3) (()=>{let s=0;for(let i=1;i<=5;i++)s+=i;return s})()</textarea>
+        <div class="row"><button class="btn primary" id="run">Exécuter</button></div>
+        <pre id="out" class="code"></pre>
+      </section>
+    </div>
+
     <section class="card center muted" style="margin-top:14px">
-      Logo original inspiré (ninja/éclair/shuriken). Pseudo personnalisé : <b>FunMaker1404</b>.
+      Logo original inspiré (ninja/éclair/shuriken). Démo hors-ligne (local). Pour un site public, laisse ce fichier ici sur GitHub Pages.
     </section>
   </div>
 
 <script>
-// Code JavaScript identique à la version précédente
+/* Utils */
+const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+const randInt=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
+const shuffle=a=>a.map(v=>[v,Math.random()]).sort((x,y)=>x[1]-y[1]).map(x=>x[0]);
+
+/* Quiz DB */
+const QUIZ_DB=[
+  { level:"Primaire", subject:"Maths", title:"Additions", q:[
+    {t:"2 + 3 = ?", opts:["4","5","6","7"], ok:1},
+    {t:"5 + 5 = ?", opts:["9","10","11","12"], ok:1}
+  ]},
+  { level:"6e", subject:"Maths", title:"Fractions", q:[
+    {t:"1/2 + 1/2 = ?", opts:["1/4","1","2","1/2"], ok:1},
+    {t:"La moitié de 12", opts:["4","6","8","12"], ok:1}
+  ]},
+  { level:"6e", subject:"Sciences", title:"Corps humain", q:[
+    {t:"Organe qui pompe le sang ?", opts:["Poumon","Foie","Cœur","Rein"], ok:2},
+    {t:"Os du bras ?", opts:["Tibia","Humérus","Crâne","Vertèbre"], ok:1}
+  ]},
+  { level:"Lycée", subject:"Informatique", title:"Logique", q:[
+    {t:"true AND false = ?", opts:["true","false","undefined","1"], ok:1},
+    {t:"NOT(true OR false) = ?", opts:["true","false","0","1"], ok:1}
+  ]},
+];
+let quizIndex=0;
+function listQuiz(){ return QUIZ_DB.filter(q=> q.level===$('#level').value && q.subject===$('#subject').value); }
+function renderQuiz(){
+  const list=listQuiz(); const meta=$('#quizMeta'); const ch=$('#quizChoices'); const idx=$('#quizIndex');
+  $('#quizQ').innerHTML=''; ch.innerHTML='';
+  if(!list.length){ meta.textContent=$('#level').value+' • '+$('#subject').value; $('#quizQ').innerHTML='<span class="muted">Aucun quiz pour cette combinaison.</span>'; idx.textContent='—'; return; }
+  const cur=list[quizIndex%list.length]; meta.textContent=`${cur.level} • ${cur.subject} — ${cur.title}`; idx.textContent=`${(quizIndex%list.length)+1}/${list.length}`;
+  cur.q.forEach((qq,qi)=>{
+    const head=document.createElement('div'); head.innerHTML=`<b>Q${qi+1}.</b> ${qq.t}`; head.style.margin='6px 0'; ch.append(head);
+    qq.opts.forEach((o,i)=>{
+      const b=document.createElement('button'); b.className='opt'; b.textContent=o;
+      b.onclick=()=>{ [...ch.querySelectorAll('.opt')].forEach(btn=>btn.classList.remove('ok','bad')); 
+                      if(i===qq.ok) b.classList.add('ok'); else b.classList.add('bad'); };
+      ch.append(b);
+    });
+  });
+}
+$('#prevQuiz').onclick=()=>{ const l=listQuiz(); if(!l.length) return; quizIndex=(quizIndex-1+l.length)%l.length; renderQuiz(); };
+$('#nextQuiz').onclick=()=>{ const l=listQuiz(); if(!l.length) return; quizIndex=(quizIndex+1)%l.length; renderQuiz(); };
+
+/* Entraînement intelligent */
+function makeMath(level){
+  if(level==="Primaire"){ const a=randInt(1,20),b=randInt(1,20),op=Math.random()<.5?'+':'-'; const ans=op==='+'?a+b:a-b; const opts=shuffle([ans,ans+1,ans-1,ans+2]).map(String); return {t:`${a} ${op} ${b} = ?`,opts,ok:opts.indexOf(String(ans))}; }
+  if(level==="6e"||level==="5e"){ if(Math.random()<.5){ const a=randInt(2,12),b=randInt(2,12),ans=a*b; const opts=shuffle([ans,ans+2,ans-2,ans+5]).map(String); return {t:`${a} × ${b} = ?`,opts,ok:opts.indexOf(String(ans))}; }
+    const d=randInt(2,9),n1=randInt(1,d-1),n2=randInt(1,d-1),ans=(n1+n2)+'/'+d; const opts=shuffle([ans,(n1+n2+1)+'/'+d,(n1+n2-1)+'/'+d,(n1)+'/'+d]); return {t:`${n1}/${d} + ${n2}/${d} = ?`,opts,ok:opts.indexOf(ans)}; }
+  const base=randInt(100,500),p=randInt(10,60),ans=Math.round(base*p/100); const opts=shuffle([ans,ans+10,ans-10,ans+20]).map(String); return {t:`${p}% de ${base} = ?`,opts,ok:opts.indexOf(String(ans))};
+}
+function makeFr(){ const forms=[["le","chat"],["la","maison"],["l'","école"],["l'","arbre"]]; const [a,w]=forms[randInt(0,forms.length-1)]; const opts=shuffle([a,"le","la","l'"]); return {t:`___ ${w}`,opts,ok:opts.indexOf(a)}; }
+function makeEn(){ const dict=[["cat","chat"],["dog","chien"],["blue","bleu"],["red","rouge"]]; const [eng,fr]=dict[randInt(0,dict.length-1)]; const opts=shuffle([fr,"jaune","noir","vert"]); return {t:`Traduire: ${eng}`,opts,ok:opts.indexOf(fr)}; }
+function makeSci(){ const a={t:"Planète rouge ?",a:"Mars",w:["Jupiter","Vénus","Mercure"]}; const opts=shuffle([a.a,...a.w]); return {t:a.t,opts,ok:opts.indexOf(a.a)}; }
+function gen(level,subject){ const pool=subject==="Mix"?["Maths","Français","Anglais","Sciences"][randInt(0,3)]:subject; const map={Maths:makeMath, Français:makeFr, Anglais:makeEn, Sciences:makeSci}; return (map[pool]||makeMath)(level); }
+
+$('#trainStart').onclick=()=>{
+  const level=$('#level').value, subject=$('#subject').value, zone=$('#trainZone'); zone.innerHTML='';
+  let i=0,score=0,sel=null; const list=Array.from({length:10},()=>gen(level,subject));
+  const show=()=>{ zone.innerHTML=''; const cur=list[i];
+    const meta=document.createElement('div'); meta.className='kpi'; meta.innerHTML=`<span class="muted">Question ${i+1}/10</span> • <span>Score: <b>${score}</b></span>`; zone.append(meta);
+    const q=document.createElement('div'); q.style.margin='6px 0'; q.innerHTML=cur.t; zone.append(q);
+    cur.opts.forEach((o,idx)=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=o;
+      b.onclick=()=>{ if(sel!=null)return; sel=idx; if(idx===cur.ok) score++;
+        zone.querySelectorAll('.opt').forEach((x,j)=>{ x.classList.remove('ok','bad'); if(j===cur.ok) x.classList.add('ok'); else if(j===idx) x.classList.add('bad'); });
+        setTimeout(()=>{ if(i<9){ i++; sel=null; show(); } else { zone.innerHTML=`<div class="kpi"><span class="muted">Résultat</span> • <b>${score}/10</b></div>`; } }, 600);
+      };
+      zone.append(b);
+    });
+  };
+  show();
+};
+
+/* Texte & Image */
+$('#addRender').onclick=()=>{
+  const t=$('#textArea').value.trim(), url=$('#imgUrl').value.trim(), root=$('#renderZone');
+  if(t){ const d=document.createElement('div'); d.textContent=t; d.style.margin='6px 0'; root.append(d); $('#textArea').value=''; }
+  if(url){ const im=new Image(); im.src=url; im.alt='image'; im.className='preview';
+           im.onload=()=>root.append(im); im.onerror=()=>{ const m=document.createElement('div'); m.className='muted'; m.textContent="Image introuvable"; root.append(m); };
+           $('#imgUrl').value=''; }
+};
+$('#clearRender').onclick=()=> $('#renderZone').innerHTML='';
+
+/* Roue */
+function renderWheel(){
+  const svg=$('#wheel'); svg.innerHTML='';
+  const opts=$$('.wheelOpt').map(i=>i.value.trim()).filter(Boolean);
+  const seg=Math.max(1,opts.length||6), per=360/seg;
+  for(let i=0;i<seg;i++){
+    const start=(i*per-90)*Math.PI/180, end=((i+1)*per-90)*Math.PI/180;
+    const x1=50+50*Math.cos(start), y1=50+50*Math.sin(start);
+    const x2=50+50*Math.cos(end), y2=50+50*Math.sin(end);
+    const large=per>180?1:0;
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d',`M50,50 L${x1},${y1} A50,50 0 ${large} 1 ${x2},${y2} Z`);
+    p.setAttribute('fill',`hsl(${(i*60)%360},70%,55%)`); p.setAttribute('opacity','.95'); svg.append(p);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x','50'); t.setAttribute('y','50'); t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','4'); t.setAttribute('fill','#041014');
+    t.setAttribute('transform',`rotate(${i*per+per/2} 50 50) translate(0 -34)`); t.textContent=(opts[i]||('Opt '+(i+1))).slice(0,10); svg.append(t);
+  }
+}
+$$('.wheelOpt').forEach(i=> i.addEventListener('input', renderWheel));
+renderWheel();
+let angle=0, spinning=false;
+$('#spin').onclick=()=>{
+  const opts=$$('.wheelOpt').map(i=>i.value.trim()).filter(Boolean);
+  const seg=Math.max(1,opts.length||6); if(spinning||seg===0) return; spinning=true; $('#winner').textContent='';
+  const per=360/seg, target=Math.floor(Math.random()*seg), extra=360*5; angle += extra + (target+.5)*per;
+  const svg=$('#wheel'); svg.style.transition='transform 3.2s cubic-bezier(.2,.9,.2,1)';
+  requestAnimationFrame(()=> svg.style.transform=`rotate(${angle}deg)`);
+  setTimeout(()=>{ svg.style.transition='none'; spinning=false; $('#winner').textContent='Gagnant : '+(opts[target]||('Option '+(target+1))); }, 3300);
+};
+
+/* Sondage */
+const POLL={ title:"Aimes-tu FunMaker ?", options:["Oui","Non","Bof","Je ne sais pas"], votes:[0,0,0,0] };
+$('#pollTitle').value=POLL.title; $('#pollTitle').oninput=e=>POLL.title=e.target.value;
+function drawPoll(){
+  const root=$('#poll'); root.innerHTML='';
+  const title=document.createElement('div'); title.className='muted'; title.textContent=POLL.title; root.append(title);
+  POLL.options.forEach((opt,i)=>{
+    const row=document.createElement('div'); row.style.margin='8px 0';
+    const top=document.createElement('div'); top.className='row'; const btn=document.createElement('button'); btn.className='btn'; btn.textContent='Voter';
+    const lab=document.createElement('div'); lab.textContent=opt; lab.style.flex='1';
+    btn.onclick=()=>{ POLL.votes[i]++; updateBars(); };
+    top.append(lab,btn); row.append(top);
+    const bar=document.createElement('div'); bar.className='bar'; const fill=document.createElement('div'); bar.append(fill); row.append(bar);
+    root.append(row);
+  });
+  updateBars();
+}
+function updateBars(){
+  const tot=POLL.votes.reduce((a,b)=>a+b,0)||1;
+  $$('#poll .bar').forEach((b,i)=>{ b.firstChild.style.width=Math.round((POLL.votes[i]/tot)*100)+'%'; });
+}
+drawPoll();
+
+/* Tirage simple */
+$('#drawBtn').onclick=()=>{
+  const arr=$('#drawInput').value.split(',').map(s=>s.trim()).filter(Boolean);
+  if(!arr.length){ $('#drawOut').textContent='(ajoute des noms)'; return; }
+  $('#drawOut').textContent=arr[Math.floor(Math.random()*arr.length)];
+};
+
+/* Timer */
+let tIv=null;
+$('#timerGo').onclick=()=>{
+  clearInterval(tIv);
+  let s=(parseInt($('#timerMin').value)||0)*60;
+  const tick=()=>{ if(s<=0){ clearInterval(tIv); $('#timer').textContent='00:00'; return; }
+    s--; const m=String(Math.floor(s/60)).padStart(2,'0'), ss=String(s%60).padStart(2,'0'); $('#timer').textContent=`${m}:${ss}`; };
+  tick(); tIv=setInterval(tick,1000);
+};
+
+/* Langues */
+const LANG={ word:'chat', answer:'cat' };
+$('#langWord').textContent=LANG.word;
+$$('button[data-ans]').forEach(b=> b.onclick=()=>{ const ok=b.dataset.ans===LANG.answer; $('#langMsg').textContent= ok?'✅ Bravo !':'❌ Essaie encore'; });
+
+/* Programmation */
+$('#run').onclick=()=>{
+  const code=$('#code').value;
+  try{ const res=eval(code); $('#out').textContent=(res===undefined?'(aucun retour)':String(res)); }
+  catch(e){ $('#out').textContent='Erreur: '+e.message; }
+};
+
+/* Setup */
+function refreshAll(){ renderQuiz(); renderWheel(); $('#trainZone').innerHTML=''; $('#winner').textContent=''; }
+$('#startPack').onclick=refreshAll;
+window.addEventListener('load', refreshAll);
+$('#level').addEventListener('change', ()=>{ quizIndex=0; renderQuiz(); });
+$('#subject').addEventListener('change', ()=>{ quizIndex=0; renderQuiz(); });
 </script>
 </body>
 </html>
