@@ -3,23 +3,22 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FunMaker1404 — Studio+ Adaptatif + Coins & Boutique</title>
+<title>FunMaker1404 — Studio+ (Premium réel, niveaux & langues)</title>
 <style>
-  :root{ --bg:#0b0b11; --bg2:#0e0e15; --card:#12131a; --muted:#aab; --text:#eef;
-         --brand:#7c3aed; --brand2:#22d3ee; --ok:#10b981; --bad:#ef4444; --border:#242636; }
+  :root{ --bg:#0b0b11; --bg2:#0e0e15; --card:#12131a; --muted:#aab; --text:#eef; --brand:#7c3aed; --brand2:#22d3ee; --ok:#10b981; --bad:#ef4444; --border:#242636; }
   *{box-sizing:border-box} html,body{height:100%}
   body{margin:0;background:radial-gradient(1200px 800px at 10% -10%, rgba(124,58,237,.25), transparent),
                       radial-gradient(900px 600px at 110% 20%, rgba(34,211,238,.2), transparent),
                       linear-gradient(180deg,var(--bg),var(--bg2));
        color:var(--text); font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-  .shell{max-width:1150px;margin:0 auto;padding:20px}
+  .shell{max-width:1200px;margin:0 auto;padding:20px}
   header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}
   .logoWrap{display:flex;gap:10px;align-items:center}
   .title{font-weight:800;font-size:20px}
   .muted{color:var(--muted);font-size:12px}
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   select,input,textarea,button{border:1px solid var(--border);background:#0f1118;color:var(--text);border-radius:12px;padding:10px 12px}
-  input[type="number"]{width:140px} textarea{width:100%;min-height:110px}
+  input[type="number"]{width:120px} textarea{width:100%;min-height:110px}
   button{cursor:pointer} .btn{background:#1a1c27} .btn:hover{filter:brightness(1.1)}
   .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#041014; border:none; font-weight:700}
   .grid{display:grid;gap:16px} @media(min-width:980px){ .grid-2{grid-template-columns:1fr 1fr} }
@@ -38,15 +37,16 @@
   .wheelWrap{position:relative;width:260px;height:260px} .pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);font-size:22px}
   .wheel{width:100%;height:100%;border-radius:50%;border:1px solid var(--border);background:#0f1118}
   .logoSvg{width:48px;height:48px} img.preview{max-width:100%;border-radius:12px;border:1px solid var(--border)}
-  .lock{opacity:.5;filter:grayscale(1)} .badge{font-size:11px;background:#7c3aed22;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+  .lock{opacity:.55;filter:grayscale(1)} .badge{font-size:11px;background:#7c3aed22;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
   .coins{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.04)}
+  .langRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 </style>
 </head>
 <body>
   <div class="shell">
     <header>
       <div class="logoWrap">
-        <!-- Logo ninja / shuriken + éclair -->
+        <!-- Logo ninja -->
         <svg class="logoSvg" viewBox="0 0 100 100" role="img" aria-label="Logo ninja">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
@@ -61,22 +61,27 @@
         </svg>
         <div>
           <div class="title">FunMaker1404</div>
-          <div class="muted">Adaptatif (IA-like) • Langues • Programmation • Quiz • Roue • Sondage • Timer</div>
+          <div class="muted">Premium réel • Niveaux par classe • Langues multi • Prog adaptative • Quiz • Roue • Sondage • Timer</div>
         </div>
       </div>
       <div class="row">
-        <div class="coins" title="Pièces (gagnées dans les activités)">
-          🪙 <b id="coinCount">0</b>
-        </div>
+        <div class="coins">🪙 <b id="coinCount">0</b></div>
         <select id="level">
           <option>Primaire</option><option selected>6e</option><option>5e</option><option>4e</option><option>3e</option><option>Lycée</option>
         </select>
         <select id="subject">
           <option>Maths</option><option>Français</option><option>Anglais</option><option>Sciences</option><option selected>Mix</option>
         </select>
+        <div class="langRow">
+          <span class="muted">Langues :</span>
+          <select id="langFrom"><option value="FR">FR</option><option value="EN" selected>EN</option><option value="ES">ES</option><option value="DE">DE</option></select>
+          <span>→</span>
+          <select id="langTo"><option value="FR" selected>FR</option><option value="EN">EN</option><option value="ES">ES</option><option value="DE">DE</option></select>
+        </div>
         <button class="btn primary" id="startPack">Démarrer</button>
-        <button class="btn" id="togglePremium">Activer Premium (démo)</button>
-        <span id="premiumBadge" class="badge">Gratuit</span>
+        <button class="btn" id="buy">Acheter Premium</button>
+        <button class="btn" id="enterKey">Entrer une clé</button>
+        <span id="premiumBadge" class="badge">Gratuit (verrouillé)</span>
       </div>
     </header>
 
@@ -84,44 +89,34 @@
       <!-- Entraînement adaptatif -->
       <section class="card">
         <div class="row" style="justify-content:space-between">
-          <h2>⚡ Entraînement adaptatif (IA-like)</h2>
-          <span class="pill" id="aiMeta">Niveau: 6e • Diffic.: 3</span>
+          <h2>⚡ Entraînement adaptatif</h2>
+          <span class="pill" id="aiMeta">Niveau: 6e • Diff: 3</span>
         </div>
         <div id="aiZone"></div>
         <div class="row"><button class="btn primary" id="aiStart">Lancer 10 questions</button><span class="muted" id="aiScore"></span></div>
-        <div class="muted">Récompense : <b>+5</b> coins par bonne réponse</div>
       </section>
 
-      <!-- Programmation — défis -->
+      <!-- Programmation — défis (Premium) -->
       <section class="card" id="codeCard">
-        <div class="row" style="justify-content:space-between"><h2>💻 Programmation — défis adaptés</h2><span class="tag">+10 coins si tous les tests passent</span></div>
-        <div id="codeTask" class="muted"></div>
-        <textarea id="codeArea" class="code" rows="7">// Écris ta solution ici</textarea>
-        <div class="row"><button class="btn primary" id="runCode">Tester</button><span id="codeFeedback" class="muted"></span></div>
+        <div class="row" style="justify-content:space-between"><h2>💻 Programmation — progression de 0</h2><span class="tag">Premium</span></div>
+        <div id="codeLock" class="muted">🔒 Contenu Premium — achète une clé pour déverrouiller.</div>
+        <div id="codeWrap" style="display:none">
+          <div id="codeTask" class="muted"></div>
+          <textarea id="codeArea" class="code" rows="7">// Écris ta fonction solve(...) ici</textarea>
+          <div class="row"><button class="btn primary" id="runCode">Tester</button><span id="codeFeedback" class="muted"></span></div>
+        </div>
       </section>
 
-      <!-- Langues — gratuit -->
+      <!-- Langues — gratuit (basique) -->
       <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>🌍 Langues (gratuit)</h2><span class="tag">+2 coins / bonne réponse</span></div>
+        <div class="row" style="justify-content:space-between"><h2>🌍 Langues — entraînement</h2><span class="tag">s’adapte au niveau</span></div>
         <div id="langFree"></div>
       </section>
 
       <!-- Langues Plus (Premium) -->
       <section class="card" id="langPlusCard">
-        <div class="row" style="justify-content:space-between"><h2>🌟 Langues Plus (Premium)</h2><span class="tag">Phrases, conjugaison, faux amis</span></div>
+        <div class="row" style="justify-content:space-between"><h2>🌟 Langues Plus</h2><span class="tag">Phrases, conjugaison, faux amis, cloze</span></div>
         <div id="langPlus"></div>
-      </section>
-
-      <!-- Boutique / Premium -->
-      <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>🛒 Boutique & Premium</h2><span class="tag">Simulation locale</span></div>
-        <div class="row">
-          <button class="btn" id="buyMonthly">Premium 2,99€ / mois (démo)</button>
-          <button class="btn" id="buyYearly">Premium 9,99€ / an (démo)</button>
-          <button class="btn" id="buyLifetime">Premium 14,99€ à vie (démo)</button>
-          <button class="btn" id="buyWithCoins">Débloquer avec 500 🪙</button>
-        </div>
-        <div class="muted">Ces boutons **simulent** un achat. Pour de vrais paiements on branchera Stripe plus tard.</div>
       </section>
 
       <!-- Quiz prédéfinis -->
@@ -135,7 +130,7 @@
 
       <!-- Roue -->
       <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>🎡 Roue</h2><span class="tag">Coût : 1 🪙 — Gain : 0–20 🪙</span></div>
+        <div class="row" style="justify-content:space-between"><h2>🎡 Roue</h2><span class="tag">juste pour s’amuser 🙂</span></div>
         <div class="row"><input class="wheelOpt" placeholder="Option 1"/><input class="wheelOpt" placeholder="Option 2"/><input class="wheelOpt" placeholder="Option 3"/><input class="wheelOpt" placeholder="Option 4"/><input class="wheelOpt" placeholder="Option 5"/><input class="wheelOpt" placeholder="Option 6"/></div>
         <div class="center" style="margin-top:8px"><div class="wheelWrap"><div class="pin">▼</div><svg id="wheel" class="wheel" viewBox="0 0 100 100"></svg></div></div>
         <div class="row center" style="margin-top:8px"><button class="btn primary" id="spin">Lancer</button><span class="muted" id="winner"></span></div>
@@ -143,7 +138,7 @@
 
       <!-- Sondage -->
       <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>📊 Sondage</h2><span class="tag">Local (démo)</span></div>
+        <div class="row" style="justify-content:space-between"><h2>📊 Sondage</h2><span class="tag">Local</span></div>
         <input id="pollTitle" placeholder="Titre du sondage"/><div id="poll"></div>
       </section>
 
@@ -161,157 +156,209 @@
     </div>
 
     <section class="card center muted" style="margin-top:14px">
-      Coins & Boutique en mode **démo locale**. Pour paiements réels : ajouter Stripe plus tard.
+      Premium par **clé** (sans serveur). Pour une vraie validation sécurisée, ajoute un petit serveur ou Google Apps Script + Stripe (voir plus bas).
     </section>
   </div>
 
 <script>
-/* ===== Helpers & stockage ===== */
+/* ===== Utils ===== */
 const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
 const rint=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 const shuffle=a=>a.map(v=>[v,Math.random()]).sort((x,y)=>x[1]-y[1]).map(x=>x[0]);
 
-/* Coins */
+/* ===== Coins (facultatif) ===== */
 let coins = parseInt(localStorage.getItem("fm_coins")||"0",10);
 function saveCoins(){ localStorage.setItem("fm_coins", String(coins)); }
 function showCoins(){ $('#coinCount').textContent = coins; }
 function addCoins(n){ coins=Math.max(0, coins+n); saveCoins(); showCoins(); }
-function spendCoins(n){ if(coins>=n){ coins-=n; saveCoins(); showCoins(); return true; } return false; }
 
-/* Premium (démo) */
-let premium = localStorage.getItem("fm_premium")==="1";
+/* ===== Premium réel par clé =====
+   - ALLOWED_HASHES contient des SHA-256 hex de clés valides (ex: "ABCD-1234-FUNMAKER").
+   - Pour générer un hash: https://emn178.github.io/online-tools/sha256.html (ou via Node).
+   - Remplace les exemples par tes hashes.
+*/
+const ALLOWED_HASHES = [
+  "d9b1d7db4cd6e70935368a1efb10e377dce5d5a3a9c3b6ed3c3c8c2cb7a6f0f0", // EXEMPLE 1 (à remplacer)
+  "0f343b0931126a20f133d67c2b018a3b2c3c8a5b8c8b1a30aa1a2a2a2a2a2a2a"  // EXEMPLE 2 (à remplacer)
+];
+let premium = localStorage.getItem("fm_premium_key_ok")==="1";
+
+async function sha256Hex(str){
+  const enc=new TextEncoder().encode(str);
+  const buf=await crypto.subtle.digest("SHA-256", enc);
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+async function tryKey(){
+  const k = prompt("Entre ta clé Premium (ex: XXXX-YYYY-ZZZZ) :");
+  if(!k) return;
+  const h = await sha256Hex(k.trim());
+  if(ALLOWED_HASHES.includes(h)){ premium=true; localStorage.setItem("fm_premium_key_ok","1"); alert("✅ Premium activé !"); updatePremiumUI(); }
+  else { alert("❌ Clé invalide. Vérifie ton achat."); }
+}
 function updatePremiumUI(){
-  $('#premiumBadge').textContent = premium ? "Premium (démo)" : "Gratuit";
-  $('#togglePremium').textContent = premium ? "Désactiver Premium (démo)" : "Activer Premium (démo)";
+  $('#premiumBadge').textContent = premium ? "Premium actif" : "Gratuit (verrouillé)";
+  // verrou composants Premium
+  $('#codeLock').style.display = premium? "none":"block";
+  $('#codeWrap').style.display = premium? "block":"none";
   $('#langPlusCard').classList.toggle('lock', !premium);
 }
-$('#togglePremium').onclick=()=>{ premium=!premium; localStorage.setItem("fm_premium", premium?"1":"0"); updatePremiumUI(); };
+$('#enterKey').onclick=()=>{ tryKey(); };
+$('#buy').onclick=()=>{ window.open("YOUR_PAYMENT_LINK_HERE","_blank"); };
 
-/* Boutique (simulation) */
-$('#buyMonthly').onclick=()=>{ premium=true; localStorage.setItem("fm_premium","1"); updatePremiumUI(); alert("Premium mensuel activé (démo)."); };
-$('#buyYearly').onclick=()=>{ premium=true; localStorage.setItem("fm_premium","1"); updatePremiumUI(); alert("Premium annuel activé (démo)."); };
-$('#buyLifetime').onclick=()=>{ premium=true; localStorage.setItem("fm_premium","1"); updatePremiumUI(); alert("Premium à vie activé (démo)."); };
-$('#buyWithCoins').onclick=()=>{ if(spendCoins(500)){ premium=true; localStorage.setItem("fm_premium","1"); updatePremiumUI(); alert("Premium débloqué avec 500 🪙 !"); } else { alert("Pas assez de pièces (500 requises)."); } };
+/* ===== Difficulté par classe (point de départ) ===== */
+function baseDiffFor(level){
+  switch(level){
+    case "Primaire": return 2;
+    case "6e": return 3;
+    case "5e": return 4;
+    case "4e": return 5;
+    case "3e": return 6;
+    case "Lycée": return 7;
+    default: return 3;
+  }
+}
 
-/* ===== Entraînement adaptatif ===== */
+/* ===== Entraînement adaptatif (Maths/Fr/En/Sciences mix) ===== */
 const state={ diff:3, total:0, good:0 };
-function aiMeta(){ $('#aiMeta').textContent=`Niveau: ${$('#level').value} • Diffic.: ${state.diff}`; $('#aiScore').textContent=`Score: ${state.good}/${state.total}`; }
+function aiMeta(){ $('#aiMeta').textContent=`Niveau: ${$('#level').value} • Diff: ${state.diff}`; $('#aiScore').textContent=`Score: ${state.good}/${state.total}`; }
 function qMath(diff){
-  const type = diff<4 ? "addsub" : diff<7 ? (Math.random()<.6?"mult":"frac") : (["pct","exp","eq"][rint(0,2)]);
-  if(type==="addsub"){ const a=rint(1, 10*diff), b=rint(1, 10*diff), op=Math.random()<.5?'+':'-'; const ans= op==='+'?a+b:a-b;
+  const type = diff<4 ? "addsub" : diff<6 ? (Math.random()<.6?"mult":"frac") : (["pct","exp","eq"][rint(0,2)]);
+  if(type==="addsub"){ const a=rint(1, 8+diff*2), b=rint(1, 8+diff*2), op=Math.random()<.5?'+':'-'; const ans= op==='+'?a+b:a-b;
     const opts=shuffle([ans, ans+diff, ans-diff, ans+2]); return {t:`${a} ${op} ${b} = ?`, opts:opts.map(String), ok:opts.indexOf(ans)}; }
   if(type==="mult"){ const a=rint(2, 2+diff), b=rint(2, 3+diff); const ans=a*b; const opts=shuffle([ans, ans+diff, ans-2, ans+3]).map(String);
     return {t:`${a} × ${b} = ?`, opts, ok:opts.indexOf(String(ans))}; }
-  if(type==="frac"){ const d=rint(2, 4+Math.floor(diff/2)), n1=rint(1,d-1), n2=rint(1,d-1); const ans=(n1+n2)+'/'+d;
+  if(type==="frac"){ const d=rint(2, 5+Math.floor(diff/2)), n1=rint(1,d-1), n2=rint(1,d-1); const ans=(n1+n2)+'/'+d;
     const opts=shuffle([ans,(n1+n2+1)+'/'+d,(n1+n2-1)+'/'+d,(n1)+'/'+d]); return {t:`${n1}/${d} + ${n2}/${d} = ?`, opts, ok:opts.indexOf(ans)}; }
-  if(type==="pct"){ const base=rint(50,50+diff*30), p=rint(5, 10+diff*5); const ans=Math.round(base*p/100);
+  if(type==="pct"){ const base=rint(60,60+diff*35), p=rint(5, 10+diff*5); const ans=Math.round(base*p/100);
     const opts=shuffle([ans, ans+10, ans-10, ans+20]).map(String); return {t:`${p}% de ${base} = ?`, opts, ok:opts.indexOf(String(ans))}; }
   if(type==="exp"){ const a=rint(2,3+Math.floor(diff/3)), e=rint(2,3+Math.floor(diff/4)); const ans=String(a**e);
     const opts=shuffle([ans, String(a**(e-1)), String((a+1)**e), String(a**e + a)]); return {t:`${a}<sup>${e}</sup> = ?`, html:true, opts, ok:opts.indexOf(ans)}; }
-  if(type==="eq"){ const x=rint(1,5+diff), a=rint(1,5+diff), b=rint(1,5+diff), c=a*x+b; const ans=x;
+  if(type==="eq"){ const x=rint(1,6+diff), a=rint(1,6+diff), b=rint(1,6+diff), c=a*x+b; const ans=x;
     const opts=shuffle([x,x+1,x-1,x+2]).map(String); return {t:`Résous: ${a}x + ${b} = ${c}. x = ?`, opts, ok:opts.indexOf(String(ans))}; }
 }
-function qLang(diff){
-  const vocab=[["cat","chat"],["dog","chien"],["blue","bleu"],["house","maison"],["tree","arbre"],["car","voiture"]];
-  if(diff<4){ const [en,fr]=vocab[rint(0,vocab.length-1)]; const opts=shuffle([fr,"pomme","chaise","livre"]);
-    return {t:`Traduire en français: <b>${en}</b>`, html:true, opts, ok:opts.indexOf(fr)}; }
-  if(diff<7){ const who=["I","You","He","She","We","They"][rint(0,5)], verb=["like","see","eat","have"][rint(0,3)], obj=["apples","cats","music","books"][rint(0,3)];
-    const sent=`${who} ${verb} ${obj}.`; const good=`${who==="He"||who==="She"?"Il/Elle":"Je/Ns/Ils"} ${verb==="like"?"aime":"vois"} ${obj==="apples"?"des pommes":obj==="cats"?"les chats":obj==="music"?"la musique":"des livres"}.`;
-    const opts=shuffle([good,"Moi aime pommes.","Je vois chats.","Nous avons livres."]); return {t:`Traduis: « ${sent} »`, opts, ok:opts.indexOf(good)}; }
-  const pronom=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], base="manger";
-  const good = pronom==="Je"?"mange":pronom==="Tu"?"manges":(pronom==="Il"||pronom==="Elle")?"mange":pronom==="Nous"?"mangeons":pronom==="Vous"?"mangez":"mangent";
-  const opts=shuffle([good,"manger","mangea","mangera"]); return {t:`Conjugue <b>${base}</b> au présent pour « ${pronom} »`, html:true, opts, ok:opts.indexOf(good)};
+function qFr(diff){
+  if(diff<4){ const words=[["le","chat"],["la","maison"],["l'","école"],["les","enfants"]]; const [art,nom]=words[rint(0,words.length-1)];
+    const opts=shuffle([art,"le","la","l'","les"]); return {t:`Complète : ___ ${nom}`, opts, ok:opts.indexOf(art)}; }
+  const prono=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], v="manger";
+  const good = prono==="Je"?"mange":prono==="Tu"?"manges":(prono==="Il"||prono==="Elle")?"mange":prono==="Nous"?"mangeons":prono==="Vous"?"mangez":"mangent";
+  const opts=shuffle([good,"manger","mangea","mangera"]); return {t:`Conjugue <b>${v}</b> au présent pour « ${prono} »`, html:true, opts, ok:opts.indexOf(good)};
 }
-function startAI(){
-  state.total=0; state.good=0;
-  const zone=$('#aiZone'); zone.innerHTML='';
-  const list=Array.from({length:10},()=>$('#subject').value==="Mix" ? (Math.random()<.5?"Maths":"Anglais") : $('#subject').value);
-  let i=0;
+function qSci(){ const a={t:"Planète rouge ?",a:"Mars",w:["Jupiter","Vénus","Mercure"]}; const opts=shuffle([a.a,...a.w]); return {t:a.t,opts,ok:opts.indexOf(a.a)}; }
+function genAdaptive(level,subject){
+  const pool = subject==="Mix" ? ["Maths","Français","Sciences"][rint(0,2)] : subject;
+  if(pool==="Maths") return qMath(state.diff);
+  if(pool==="Français") return qFr(state.diff);
+  if(pool==="Sciences") return qSci();
+  return qMath(state.diff);
+}
+$('#aiStart').onclick=()=>{
+  state.diff=baseDiffFor($('#level').value); state.total=0; state.good=0; aiMeta();
+  const zone=$('#aiZone'); zone.innerHTML=''; let i=0;
   function ask(){
     zone.innerHTML='';
-    const subj=list[i];
-    const q = (subj==="Maths") ? qMath(state.diff) : qLang(state.diff);
+    const q=genAdaptive($('#level').value, $('#subject').value);
     const qDiv=document.createElement('div'); qDiv.style.margin='6px 0'; qDiv.innerHTML = q.html? q.t : q.t.replaceAll("<","&lt;");
     zone.append(qDiv);
     q.opts.forEach((o,idx)=>{
       const b=document.createElement('button'); b.className='opt'; b.innerHTML=o;
       b.onclick=()=>{
         state.total++;
-        if(idx===q.ok){ state.good++; state.diff=Math.min(10,state.diff+1); b.classList.add('ok'); addCoins(5); }
+        if(idx===q.ok){ state.good++; state.diff=Math.min(10,state.diff+1); b.classList.add('ok'); addCoins(3); }
         else { state.diff=Math.max(1,state.diff-1); b.classList.add('bad'); }
         aiMeta();
-        setTimeout(()=>{ if(i<9){ i++; ask(); } else { zone.innerHTML=`<div class="kpi"><span class="muted">Résultat</span> • <b>${state.good}/10</b> • Difficulté finale: <b>${state.diff}</b></div>`; } }, 550);
+        setTimeout(()=>{ if(i<9){ i++; ask(); } else { zone.innerHTML=`<div class="kpi"><span class="muted">Résultat</span> • <b>${state.good}/10</b> • Diff finale: <b>${state.diff}</b></div>`; } }, 550);
       };
       zone.append(b);
     });
-    aiMeta();
   }
   ask();
-}
-$('#aiStart').onclick=startAI;
+};
 
-/* ===== Programmation (génération + évaluation) ===== */
-function qProg(diff){
-  const pool=[];
-  pool.push(()=>({ desc:"Retourne la somme de a et b", sig:"function solve(a,b){ /* ton code */ }", tests:[[1,2,3],[5,7,12],[3,0,3]] }));
-  pool.push(()=>({ desc:"Renvoie vrai si n est pair", sig:"function solve(n){ /* ton code */ }", tests:[[2,true],[9,false],[0,true]] }));
-  if(diff>=5) pool.push(()=>({ desc:"Renvoie le plus grand nombre du tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,5,2],5],[[9,3,-1],9],[[7],7]] }));
-  if(diff>=7) pool.push(()=>({ desc:"Renvoie la chaîne inversée", sig:"function solve(s){ /* ton code */ }", tests:[["abc","cba"],["kayak","kayak"],["JS","SJ"]] }));
-  if(diff>=9) pool.push(()=>({ desc:"Vrai si palindrome (ignorer espaces/majuscules)", sig:"function solve(s){ /* ton code */ }", tests:[["A man a plan a canal Panama",true],["kayak",true],["test",false]] }));
-  return pool[rint(0,pool.length-1)]();
+/* ===== Programmation (Premium) — part de 0 et monte à chaque réussite ===== */
+function qProg(level){
+  const L=[];
+  L.push(()=>({desc:"Retourne la somme a+b", sig:"function solve(a,b){ /* ton code */ }", tests:[[1,2,3],[5,7,12],[0,0,0]]}));
+  L.push(()=>({desc:"Vrai si n est pair", sig:"function solve(n){ /* ton code */ }", tests:[[2,true],[9,false],[0,true]]}));
+  L.push(()=>({desc:"Somme d'un tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,2,3],6],[[0,0],0],[[-1,1],0]]}));
+  L.push(()=>({desc:"Max d'un tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,5,2],5],[[9,3,-1],9],[[7],7]]}));
+  L.push(()=>({desc:"Inverse une chaîne", sig:"function solve(s){ /* ton code */ }", tests:[["abc","cba"],["kayak","kayak"],["JS","SJ"]]}));
+  L.push(()=>({desc:"Palindrome (ignore espaces/majuscules)", sig:"function solve(s){ /* ton code */ }", tests:[["A man a plan a canal Panama",true],["kayak",true],["test",false]]}));
+  L.push(()=>({desc:"Fréquence des lettres (retourne objet)", sig:"function solve(s){ /* ton code */ }", tests:[["aba",{"a":2,"b":1}]]}));
+  return L[Math.min(level-1, L.length-1)]();
 }
-let curTask=null;
-function newCodeTask(){ curTask=qProg(state.diff); $('#codeTask').innerHTML=`<b>Consigne :</b> ${curTask.desc}<br/><b>Signature :</b><pre class="code" style="margin-top:6px">${curTask.sig}</pre>`; $('#codeArea').value=curTask.sig+"\n"; }
+let codeLevel=1, curTask=null;
+function newCodeTask(){ curTask=qProg(codeLevel); $('#codeTask').innerHTML=`<b>Niveau ${codeLevel}</b> — ${curTask.desc}<br/><b>Signature :</b><pre class="code" style="margin-top:6px">${curTask.sig}</pre>`; $('#codeArea').value=curTask.sig+"\n"; }
 function evalUser(code){
   try{
     const f = new Function(code + "; return typeof solve==='function'?solve:null;");
     const solve = f();
-    if(!solve) return "❌ Tu dois définir une fonction solve(...)";
+    if(!solve) return "❌ Tu dois définir solve(...)";
     for(const t of curTask.tests){
-      const arr = Array.isArray(t[0]) && t.length===2 ? t[0] : (t.length===3 ? [t[0],t[1]] : t.slice(0,t.length-1));
+      const input = Array.isArray(t[0]) && t.length===2 ? t[0] : (t.length===3 ? [t[0],t[1]] : t.slice(0,t.length-1));
       const expected = t[t.length-1];
-      const got = Array.isArray(arr) ? solve(...arr) : solve(arr);
-      if(JSON.stringify(got)!==JSON.stringify(expected)) return `❌ Test raté. Entrée=${JSON.stringify(arr)} • Attendu=${JSON.stringify(expected)} • Obtenu=${JSON.stringify(got)}`;
+      const got = Array.isArray(input) ? solve(...input) : solve(input);
+      if(JSON.stringify(got)!==JSON.stringify(expected)) return `❌ Test raté. Entrée=${JSON.stringify(input)} • Attendu=${JSON.stringify(expected)} • Obtenu=${JSON.stringify(got)}`;
     }
-    state.diff=Math.min(10, state.diff+1); aiMeta(); addCoins(10);
-    return "✅ Tous les tests sont passés ! (+10 🪙, difficulté +1)";
+    codeLevel = Math.min(codeLevel+1, 7);
+    addCoins(10);
+    return "✅ Tous les tests OK ! (+10 🪙) → Niveau suivant";
   }catch(e){ return "Erreur: "+e.message; }
 }
-$('#runCode').onclick=()=>{ const res=evalUser($('#codeArea').value); $('#codeFeedback').textContent = res; if(res.startsWith("✅")) newCodeTask(); };
+$('#runCode').onclick=()=>{ if(!premium){ alert("Premium requis."); return; } const res=evalUser($('#codeArea').value); $('#codeFeedback').textContent=res; if(res.startsWith("✅")) newCodeTask(); };
 
-/* ===== Langues (gratuit + premium) ===== */
-function renderLangFree(){
+/* ===== Langues — sélecteur multi (FR/EN/ES/DE) ===== */
+const VOCAB = {
+  EN:{FR:[["cat","chat"],["dog","chien"],["house","maison"],["book","livre"],["blue","bleu"]],
+      ES:[["cat","gato"],["dog","perro"],["house","casa"],["book","libro"],["blue","azul"]],
+      DE:[["cat","Katze"],["dog","Hund"],["house","Haus"],["book","Buch"],["blue","blau"]]},
+  FR:{EN:[["chat","cat"],["chien","dog"],["maison","house"],["livre","book"],["bleu","blue"]],
+      ES:[["chat","gato"],["chien","perro"],["maison","casa"],["livre","libro"],["bleu","azul"]],
+      DE:[["chat","Katze"],["chien","Hund"],["maison","Haus"],["livre","Buch"],["bleu","blau"]]},
+  ES:{EN:[["gato","cat"],["perro","dog"],["casa","house"],["libro","book"],["azul","blue"]],
+      FR:[["gato","chat"],["perro","chien"],["casa","maison"],["libro","livre"],["azul","bleu"]],
+      DE:[["gato","Katze"],["perro","Hund"],["casa","Haus"],["libro","Buch"],["azul","blau"]]},
+  DE:{EN:[["Katze","cat"],["Hund","dog"],["Haus","house"],["Buch","book"],["blau","blue"]],
+      FR:[["Katze","chat"],["Hund","chien"],["Haus","maison"],["Buch","livre"],["blau","bleu"]],
+      ES:[["Katze","gato"],["Hund","perro"],["Haus","casa"],["Buch","libro"],["blau","azul"]]}
+};
+let langLevel = 1; // progresse avec bonnes réponses
+function langBasic(){
+  const from=$('#langFrom').value, to=$('#langTo').value;
+  const pairs = (VOCAB[from] && VOCAB[from][to]) ? VOCAB[from][to] : [];
+  if(!pairs.length){ $('#langFree').innerHTML='<div class="muted">Combinaison non supportée.</div>'; return; }
+  const [src,dst]=pairs[rint(0,pairs.length-1)];
   const root=$('#langFree'); root.innerHTML='';
-  const vocab=[["cat","chat"],["dog","chien"],["blue","bleu"],["house","maison"],["car","voiture"],["book","livre"]];
-  const [en,fr]=vocab[rint(0,vocab.length-1)];
-  const p=document.createElement('div'); p.innerHTML=`Traduire en français : <b>${en}</b>`; root.append(p);
-  const choices=shuffle([fr,"chaise","poisson","pomme"]);
-  choices.forEach(c=>{
-    const b=document.createElement('button'); b.className='opt'; b.textContent=c;
-    b.onclick=()=>{ if(c===fr){ b.classList.add('ok'); addCoins(2); } else { b.classList.add('bad'); } setTimeout(renderLangFree,600); };
+  const p=document.createElement('div'); p.innerHTML=`Traduire <b>${src}</b> → ${to}`; root.append(p);
+  const wrong = pairs.filter(([s])=>s!==src).map(([,d])=>d);
+  const choices = shuffle([dst, ...(shuffle(wrong).slice(0,3))]);
+  choices.forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c;
+    b.onclick=()=>{ if(c===dst){ b.classList.add('ok'); langLevel=Math.min(langLevel+1,10); addCoins(2); } else b.classList.add('bad'); setTimeout(langBasic,600); };
     root.append(b);
   });
 }
-function renderLangPlus(){
+function langPlus(){
   const root=$('#langPlus'); root.innerHTML='';
-  if(!premium){ root.innerHTML='<div class="muted">🔒 Contenu Premium (démo). Clique “Activer Premium (démo)” ou débloque avec 500 🪙.</div>'; return; }
-  const mode=["phrase","conjug","fauxami"][rint(0,2)];
+  if(!premium){ root.innerHTML='<div class="muted">🔒 Premium requis.</div>'; return; }
+  const mode=["phrase","conjug","cloze"][rint(0,2)];
+  const from=$('#langFrom').value, to=$('#langTo').value;
   if(mode==="phrase"){
     const who=["I","You","He","She","We","They"][rint(0,5)], verb=["like","see","eat","have"][rint(0,3)], obj=["apples","cats","music","books"][rint(0,3)];
-    const sent=`${who} ${verb} ${obj}.`;
-    const good=`${(who==="He"||who==="She")?"Il/Elle":"Je/Ns/Ils"} ${verb==="like"?"aime":"vois"} ${obj==="apples"?"des pommes":obj==="cats"?"les chats":obj==="music"?"la musique":"des livres"}.`;
-    const choices=shuffle([good,"Nous mange livres.","Je vois pommes.","Elle aime musique."]);
-    const p=document.createElement('div'); p.innerHTML=`Traduction de phrase : « ${sent} »`; root.append(p);
-    choices.forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===good); setTimeout(renderLangPlus,600); }; root.append(b); });
+    const sent=`${who} ${verb} ${obj}.`; const target=(to==="FR"?"français":to);
+    const p=document.createElement('div'); p.innerHTML=`Traduire en <b>${target}</b> : « ${sent} »`; root.append(p);
+    const goodFR=(who==="He"||who==="She"?"Il/Elle":"Je/Nous/Ils")+" "+(verb==="like"?"aime":verb==="see"?"vois":verb==="eat"?"mange":"ai")+" "+(obj==="apples"?"des pommes":obj==="cats"?"les chats":obj==="music"?"la musique":"des livres")+".";
+    const choices=shuffle([goodFR,"Nous mange livres.","Je vois pommes.","Elle aime musique."]);
+    choices.forEach(x=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=x; b.onclick=()=>{ b.classList.toggle('ok',x===goodFR); if(x===goodFR){ addCoins(3); langLevel=Math.min(langLevel+1,10);} setTimeout(langPlus,700); }; root.append(b); });
   } else if(mode==="conjug"){
-    const pronom=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], base="aller";
-    const good = {Je:"vais",Tu:"vas",Il:"va",Elle:"va",Nous:"allons",Vous:"allez",Ils:"vont"}[pronom];
-    const p=document.createElement('div'); p.innerHTML=`Conjugue <b>${base}</b> au présent pour « ${pronom} »`; root.append(p);
-    shuffle([good,"aller","ira","allait"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===good); setTimeout(renderLangPlus,600); }; root.append(b); });
+    const pr=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], base="aller";
+    const good = {Je:"vais",Tu:"vas",Il:"va",Elle:"va",Nous:"allons",Vous:"allez",Ils:"vont"}[pr];
+    const p=document.createElement('div'); p.innerHTML=`Conjugue <b>${base}</b> (présent) pour « ${pr} »`; root.append(p);
+    shuffle([good,"aller","ira","allait"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===good); if(c===good){ addCoins(3); langLevel=Math.min(langLevel+1,10);} setTimeout(langPlus,700); }; root.append(b); });
   } else {
-    const pair=[["actually","en fait"],["library","bibliothèque"],["sensible","raisonnable"],["eventually","finalement"]][rint(0,3)];
-    const good=pair[1]; const p=document.createElement('div'); p.innerHTML=`Faux ami — Traduire : <b>${pair[0]}</b>`; root.append(p);
-    shuffle([good,"actuellement","sensiblement","événementiel"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===good); setTimeout(renderLangPlus,600); }; root.append(b); });
+    // Cloze (trou) simple EN→FR
+    const sents=[["I __ apples.","like"],["She __ a book.","has"],["We __ music.","like"]];
+    const [s,miss]=sents[rint(0,sents.length-1)];
+    const p=document.createElement('div'); p.textContent=`Complète : ${s}`; root.append(p);
+    shuffle([miss,"is","are","am"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===miss); if(c===miss){ addCoins(3); langLevel=Math.min(langLevel+1,10);} setTimeout(langPlus,700); }; root.append(b); });
   }
 }
 
@@ -357,12 +404,11 @@ $$('.wheelOpt').forEach(i=> i.addEventListener('input', renderWheel));
 renderWheel();
 let angle=0, spinning=false;
 $('#spin').onclick=()=>{
-  if(!spendCoins(1)){ alert("Pas assez de pièces pour lancer la roue (1 🪙)."); return; }
   const opts=$$('.wheelOpt').map(i=>i.value.trim()).filter(Boolean);
   const seg=Math.max(1,opts.length||6); if(spinning||seg===0) return; spinning=true; $('#winner').textContent='';
   const per=360/seg, target=Math.floor(Math.random()*seg), extra=360*5; angle += extra + (target+.5)*per;
   const svg=$('#wheel'); svg.style.transition='transform 3.2s cubic-bezier(.2,.9,.2,1)'; requestAnimationFrame(()=> svg.style.transform=`rotate(${angle}deg)`);
-  setTimeout(()=>{ svg.style.transition='none'; spinning=false; const gain=rint(0,20); addCoins(gain); $('#winner').textContent='Gagnant : '+(opts[target]||('Option '+(target+1)))+' • Bonus: '+gain+' 🪙'; }, 3300);
+  setTimeout(()=>{ svg.style.transition='none'; spinning=false; $('#winner').textContent='Gagnant : '+(opts[target]||('Option '+(target+1))); }, 3300);
 };
 
 const POLL={ title:"Aimes-tu FunMaker ?", options:["Oui","Non","Bof","Je ne sais pas"], votes:[0,0,0,0] };
@@ -385,11 +431,16 @@ let tIv=null; $('#timerGo').onclick=()=>{ clearInterval(tIv); let s=(parseInt($(
   tick(); tIv=setInterval(tick,1000); };
 
 /* ===== Init ===== */
-function refreshAll(){ renderQuiz(); renderWheel(); renderLangFree(); renderLangPlus(); newCodeTask(); aiMeta(); showCoins(); }
+function refreshAll(){ renderQuiz(); renderWheel(); langBasic(); langPlus(); if(premium){ newCodeTask(); } aiMeta(); showCoins(); }
 $('#startPack').onclick=refreshAll;
-window.addEventListener('load', ()=>{ updatePremiumUI(); showCoins(); refreshAll(); });
-$('#level').addEventListener('change', ()=>{ state.diff=3; aiMeta(); renderQuiz(); });
+window.addEventListener('load', ()=>{ // set base diff on load
+  state.diff=baseDiffFor($('#level').value);
+  updatePremiumUI(); showCoins(); refreshAll();
+});
+$('#level').addEventListener('change', ()=>{ state.diff=baseDiffFor($('#level').value); aiMeta(); renderQuiz(); });
 $('#subject').addEventListener('change', renderQuiz);
+$('#langFrom').addEventListener('change', ()=>{ langBasic(); langPlus(); });
+$('#langTo').addEventListener('change', ()=>{ langBasic(); langPlus(); });
 </script>
 </body>
 </html>
