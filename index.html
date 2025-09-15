@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FunMaker1404 — Studio+ (Premium réel, niveaux & langues)</title>
+<title>FunMaker1404 — Niveaux par Classe + Premium</title>
 <style>
   :root{ --bg:#0b0b11; --bg2:#0e0e15; --card:#12131a; --muted:#aab; --text:#eef; --brand:#7c3aed; --brand2:#22d3ee; --ok:#10b981; --bad:#ef4444; --border:#242636; }
   *{box-sizing:border-box} html,body{height:100%}
@@ -18,7 +18,7 @@
   .muted{color:var(--muted);font-size:12px}
   .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   select,input,textarea,button{border:1px solid var(--border);background:#0f1118;color:var(--text);border-radius:12px;padding:10px 12px}
-  input[type="number"]{width:120px} textarea{width:100%;min-height:110px}
+  textarea{width:100%;min-height:110px}
   button{cursor:pointer} .btn{background:#1a1c27} .btn:hover{filter:brightness(1.1)}
   .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#041014; border:none; font-weight:700}
   .grid{display:grid;gap:16px} @media(min-width:980px){ .grid-2{grid-template-columns:1fr 1fr} }
@@ -30,49 +30,35 @@
   .opt.ok{background:var(--ok);color:#041014;border-color:transparent}
   .opt.bad{background:var(--bad);color:#041014;border-color:transparent}
   .kpi{display:flex;gap:8px;align-items:center;font-size:12px} .kpi b{font-size:14px}
-  .bar{height:8px;background:#222538;border-radius:999px;overflow:hidden}
-  .bar>div{height:100%;background:linear-gradient(90deg,var(--brand),var(--brand2))}
-  .code{background:#0c0f18;border:1px solid #1e2233;border-radius:12px;padding:10px;white-space:pre-wrap}
-  .center{display:grid;place-items:center} .tag{font-size:11px;opacity:.8}
-  .wheelWrap{position:relative;width:260px;height:260px} .pin{position:absolute;left:50%;top:-4px;transform:translateX(-50%);font-size:22px}
-  .wheel{width:100%;height:100%;border-radius:50%;border:1px solid var(--border);background:#0f1118}
-  .logoSvg{width:48px;height:48px} img.preview{max-width:100%;border-radius:12px;border:1px solid var(--border)}
-  .lock{opacity:.55;filter:grayscale(1)} .badge{font-size:11px;background:#7c3aed22;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
-  .coins{display:flex;align-items:center;gap:6px;border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.04)}
-  .langRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .badge{font-size:11px;background:#7c3aed22;border:1px solid var(--border);padding:4px 8px;border-radius:999px}
+  .lock{opacity:.55;filter:grayscale(1)}
 </style>
 </head>
 <body>
   <div class="shell">
     <header>
       <div class="logoWrap">
-        <!-- Logo ninja -->
-        <svg class="logoSvg" viewBox="0 0 100 100" role="img" aria-label="Logo ninja">
+        <svg width="44" height="44" viewBox="0 0 100 100" role="img" aria-label="Logo ninja">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
-            <radialGradient id="glow" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="rgba(255,255,255,0.35)"/><stop offset="1" stop-color="rgba(255,255,255,0)"/></radialGradient>
-            <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.2"/></filter>
           </defs>
           <circle cx="50" cy="50" r="46" fill="url(#g1)" />
-          <circle cx="50" cy="50" r="42" fill="#0f1118" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
-          <g fill="url(#g1)" opacity="0.95"><path d="M50 16 L56 40 L84 50 L56 60 L50 84 L44 60 L16 50 L44 40 Z" /></g>
-          <path d="M57 24 L45 52 L60 52 L43 78 L52 56 L38 56 Z" fill="#22d3ee" stroke="#7c3aed" stroke-width="1.2" filter="url(#soft)" opacity="0.95"/>
-          <circle cx="36" cy="34" r="14" fill="url(#glow)" opacity="0.6"/>
+          <circle cx="50" cy="50" r="40" fill="#0f1118" stroke="rgba(255,255,255,.15)" stroke-width="1.5"/>
+          <path d="M50 16 L56 40 L84 50 L56 60 L50 84 L44 60 L16 50 L44 40 Z" fill="url(#g1)" opacity="0.95" />
         </svg>
         <div>
           <div class="title">FunMaker1404</div>
-          <div class="muted">Premium réel • Niveaux par classe • Langues multi • Prog adaptative • Quiz • Roue • Sondage • Timer</div>
+          <div class="muted">Niveaux par classe • Entraînement • Langues • Programmation • Premium par clé</div>
         </div>
       </div>
       <div class="row">
-        <div class="coins">🪙 <b id="coinCount">0</b></div>
         <select id="level">
           <option>Primaire</option><option selected>6e</option><option>5e</option><option>4e</option><option>3e</option><option>Lycée</option>
         </select>
         <select id="subject">
           <option>Maths</option><option>Français</option><option>Anglais</option><option>Sciences</option><option selected>Mix</option>
         </select>
-        <div class="langRow">
+        <div class="row">
           <span class="muted">Langues :</span>
           <select id="langFrom"><option value="FR">FR</option><option value="EN" selected>EN</option><option value="ES">ES</option><option value="DE">DE</option></select>
           <span>→</span>
@@ -81,7 +67,7 @@
         <button class="btn primary" id="startPack">Démarrer</button>
         <button class="btn" id="buy">Acheter Premium</button>
         <button class="btn" id="enterKey">Entrer une clé</button>
-        <span id="premiumBadge" class="badge">Gratuit (verrouillé)</span>
+        <span id="premiumBadge" class="badge">Gratuit</span>
       </div>
     </header>
 
@@ -90,16 +76,16 @@
       <section class="card">
         <div class="row" style="justify-content:space-between">
           <h2>⚡ Entraînement adaptatif</h2>
-          <span class="pill" id="aiMeta">Niveau: 6e • Diff: 3</span>
+          <span class="pill" id="aiMeta">Classe: 6e • Diff: 3</span>
         </div>
         <div id="aiZone"></div>
         <div class="row"><button class="btn primary" id="aiStart">Lancer 10 questions</button><span class="muted" id="aiScore"></span></div>
       </section>
 
-      <!-- Programmation — défis (Premium) -->
+      <!-- Programmation — Premium -->
       <section class="card" id="codeCard">
-        <div class="row" style="justify-content:space-between"><h2>💻 Programmation — progression de 0</h2><span class="tag">Premium</span></div>
-        <div id="codeLock" class="muted">🔒 Contenu Premium — achète une clé pour déverrouiller.</div>
+        <div class="row" style="justify-content:space-between"><h2>💻 Programmation (Niveau 1 → ...)</h2><span class="pill">Premium</span></div>
+        <div id="codeLock" class="muted">🔒 Contenu Premium — achète et entre une clé pour déverrouiller.</div>
         <div id="codeWrap" style="display:none">
           <div id="codeTask" class="muted"></div>
           <textarea id="codeArea" class="code" rows="7">// Écris ta fonction solve(...) ici</textarea>
@@ -107,19 +93,19 @@
         </div>
       </section>
 
-      <!-- Langues — gratuit (basique) -->
+      <!-- Langues — de base (gratuit) -->
       <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>🌍 Langues — entraînement</h2><span class="tag">s’adapte au niveau</span></div>
+        <div class="row" style="justify-content:space-between"><h2>🌍 Langues — entraînement</h2><span class="pill" id="langMeta">EN → FR • Lv 1</span></div>
         <div id="langFree"></div>
       </section>
 
-      <!-- Langues Plus (Premium) -->
+      <!-- Langues Plus — Premium -->
       <section class="card" id="langPlusCard">
-        <div class="row" style="justify-content:space-between"><h2>🌟 Langues Plus</h2><span class="tag">Phrases, conjugaison, faux amis, cloze</span></div>
+        <div class="row" style="justify-content:space-between"><h2>🌟 Langues Plus</h2><span class="pill">Premium</span></div>
         <div id="langPlus"></div>
       </section>
 
-      <!-- Quiz prédéfinis -->
+      <!-- Quiz prédéfinis (exemples) -->
       <section class="card">
         <div class="row" style="justify-content:space-between">
           <h2>📝 Quiz prédéfinis</h2><span class="pill" id="quizMeta">6e • Maths</span>
@@ -128,17 +114,9 @@
         <div class="row"><button class="btn" id="prevQuiz">◀ Préc.</button><span class="muted" id="quizIndex">1/1</span><button class="btn" id="nextQuiz">Suiv. ▶</button></div>
       </section>
 
-      <!-- Roue -->
-      <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>🎡 Roue</h2><span class="tag">juste pour s’amuser 🙂</span></div>
-        <div class="row"><input class="wheelOpt" placeholder="Option 1"/><input class="wheelOpt" placeholder="Option 2"/><input class="wheelOpt" placeholder="Option 3"/><input class="wheelOpt" placeholder="Option 4"/><input class="wheelOpt" placeholder="Option 5"/><input class="wheelOpt" placeholder="Option 6"/></div>
-        <div class="center" style="margin-top:8px"><div class="wheelWrap"><div class="pin">▼</div><svg id="wheel" class="wheel" viewBox="0 0 100 100"></svg></div></div>
-        <div class="row center" style="margin-top:8px"><button class="btn primary" id="spin">Lancer</button><span class="muted" id="winner"></span></div>
-      </section>
-
       <!-- Sondage -->
       <section class="card">
-        <div class="row" style="justify-content:space-between"><h2>📊 Sondage</h2><span class="tag">Local</span></div>
+        <div class="row" style="justify-content:space-between"><h2>📊 Sondage</h2><span class="muted">Local</span></div>
         <input id="pollTitle" placeholder="Titre du sondage"/><div id="poll"></div>
       </section>
 
@@ -155,8 +133,8 @@
       </section>
     </div>
 
-    <section class="card center muted" style="margin-top:14px">
-      Premium par **clé** (sans serveur). Pour une vraie validation sécurisée, ajoute un petit serveur ou Google Apps Script + Stripe (voir plus bas).
+    <section class="card muted" style="margin-top:14px">
+      <b>Note Premium :</b> remplace dans le code <code>YOUR_PAYMENT_LINK_HERE</code> par ton lien de paiement (Stripe, etc.). Après achat, donne une **clé** à l’utilisateur et ajoute son <b>hash SHA-256</b> dans <code>ALLOWED_HASHES</code>.
     </section>
   </div>
 
@@ -166,93 +144,124 @@ const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll
 const rint=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 const shuffle=a=>a.map(v=>[v,Math.random()]).sort((x,y)=>x[1]-y[1]).map(x=>x[0]);
 
-/* ===== Coins (facultatif) ===== */
-let coins = parseInt(localStorage.getItem("fm_coins")||"0",10);
-function saveCoins(){ localStorage.setItem("fm_coins", String(coins)); }
-function showCoins(){ $('#coinCount').textContent = coins; }
-function addCoins(n){ coins=Math.max(0, coins+n); saveCoins(); showCoins(); }
+/* ===== LIEN DE PAIEMENT — REMPLACE ICI =====
+ * Mets ici ton lien Stripe Payment Link ou autre.
+ * C'est EXACTEMENT là que tu changes "YOUR_PAYMENT_LINK_HERE".
+ */
+const PAYMENT_LINK = "YOUR_PAYMENT_LINK_HERE";
 
-/* ===== Premium réel par clé =====
-   - ALLOWED_HASHES contient des SHA-256 hex de clés valides (ex: "ABCD-1234-FUNMAKER").
-   - Pour générer un hash: https://emn178.github.io/online-tools/sha256.html (ou via Node).
-   - Remplace les exemples par tes hashes.
-*/
+/* ===== Premium par CLÉ (hashée) =====
+ * Remplace les hex ci-dessous par les SHA-256 des clés que TU émets.
+ */
 const ALLOWED_HASHES = [
-  "d9b1d7db4cd6e70935368a1efb10e377dce5d5a3a9c3b6ed3c3c8c2cb7a6f0f0", // EXEMPLE 1 (à remplacer)
-  "0f343b0931126a20f133d67c2b018a3b2c3c8a5b8c8b1a30aa1a2a2a2a2a2a2a"  // EXEMPLE 2 (à remplacer)
+  "d9b1d7db4cd6e70935368a1efb10e377dce5d5a3a9c3b6ed3c3c8c2cb7a6f0f0", // exemple (à remplacer)
+  "0f343b0931126a20f133d67c2b018a3b2c3c8a5b8c8b1a30aa1a2a2a2a2a2a2a"  // exemple (à remplacer)
 ];
 let premium = localStorage.getItem("fm_premium_key_ok")==="1";
-
 async function sha256Hex(str){
   const enc=new TextEncoder().encode(str);
   const buf=await crypto.subtle.digest("SHA-256", enc);
   return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
 }
 async function tryKey(){
-  const k = prompt("Entre ta clé Premium (ex: XXXX-YYYY-ZZZZ) :");
+  const k = prompt("Entre ta clé Premium (ex: FM-1234-ABCD) :");
   if(!k) return;
   const h = await sha256Hex(k.trim());
   if(ALLOWED_HASHES.includes(h)){ premium=true; localStorage.setItem("fm_premium_key_ok","1"); alert("✅ Premium activé !"); updatePremiumUI(); }
-  else { alert("❌ Clé invalide. Vérifie ton achat."); }
+  else { alert("❌ Clé invalide."); }
 }
 function updatePremiumUI(){
-  $('#premiumBadge').textContent = premium ? "Premium actif" : "Gratuit (verrouillé)";
-  // verrou composants Premium
+  $('#premiumBadge').textContent = premium ? "Premium actif" : "Gratuit";
   $('#codeLock').style.display = premium? "none":"block";
   $('#codeWrap').style.display = premium? "block":"none";
   $('#langPlusCard').classList.toggle('lock', !premium);
 }
-$('#enterKey').onclick=()=>{ tryKey(); };
-$('#buy').onclick=()=>{ window.open("YOUR_PAYMENT_LINK_HERE","_blank"); };
+$('#enterKey').onclick=tryKey;
+$('#buy').onclick=()=>{ window.open(PAYMENT_LINK, "_blank"); };
 
-/* ===== Difficulté par classe (point de départ) ===== */
-function baseDiffFor(level){
-  switch(level){
-    case "Primaire": return 2;
-    case "6e": return 3;
-    case "5e": return 4;
-    case "4e": return 5;
-    case "3e": return 6;
-    case "Lycée": return 7;
-    default: return 3;
-  }
-}
+/* ===== Profils par CLASSE — VRAIES DIFFÉRENCES =====
+   Chaque profil règle la difficulté de départ, les plages de nombres
+   et les notions autorisées (plus on monte en classe, plus on autorise).
+*/
+const CLASS_PROFILE = {
+  "Primaire": { start:2,  nMax:20, allow:{add:true, sub:true, mult:false, frac:false, pct:false, exp:false, eq:false} },
+  "6e":       { start:3,  nMax:50, allow:{add:true, sub:true, mult:true,  frac:true,  pct:false, exp:false, eq:false} },
+  "5e":       { start:4,  nMax:80, allow:{add:true, sub:true, mult:true,  frac:true,  pct:true,  exp:false, eq:false} },
+  "4e":       { start:5,  nMax:120,allow:{add:true, sub:true, mult:true,  frac:true,  pct:true,  exp:true,  eq:false} },
+  "3e":       { start:6,  nMax:180,allow:{add:true, sub:true, mult:true,  frac:true,  pct:true,  exp:true,  eq:true } },
+  "Lycée":    { start:7,  nMax:350,allow:{add:true, sub:true, mult:true,  frac:true,  pct:true,  exp:true,  eq:true } },
+};
 
-/* ===== Entraînement adaptatif (Maths/Fr/En/Sciences mix) ===== */
+/* ===== Entraînement adaptatif ===== */
 const state={ diff:3, total:0, good:0 };
-function aiMeta(){ $('#aiMeta').textContent=`Niveau: ${$('#level').value} • Diff: ${state.diff}`; $('#aiScore').textContent=`Score: ${state.good}/${state.total}`; }
-function qMath(diff){
-  const type = diff<4 ? "addsub" : diff<6 ? (Math.random()<.6?"mult":"frac") : (["pct","exp","eq"][rint(0,2)]);
-  if(type==="addsub"){ const a=rint(1, 8+diff*2), b=rint(1, 8+diff*2), op=Math.random()<.5?'+':'-'; const ans= op==='+'?a+b:a-b;
+function baseDiffFor(level){ return (CLASS_PROFILE[level]||CLASS_PROFILE["6e"]).start; }
+function aiMeta(){ $('#aiMeta').textContent=`Classe: ${$('#level').value} • Diff: ${state.diff}`; $('#aiScore').textContent=`Score: ${state.good}/${state.total}`; }
+
+function qMath(level, diff){
+  const P = CLASS_PROFILE[level] || CLASS_PROFILE["6e"];
+  const allow = P.allow, N = P.nMax;
+  const types = [];
+  if(allow.add||allow.sub) types.push("addsub");
+  if(allow.mult) types.push("mult");
+  if(allow.frac) types.push("frac");
+  if(allow.pct)  types.push("pct");
+  if(allow.exp)  types.push("exp");
+  if(allow.eq)   types.push("eq");
+  const type = types[rint(0,types.length-1)];
+
+  if(type==="addsub"){ const a=rint(1, Math.max(5, Math.floor(N*0.5)+diff*2)), b=rint(1, Math.max(5, Math.floor(N*0.5)+diff*2));
+    const op = Math.random()<.5?'+':'-'; const ans= op==='+'?a+b:a-b;
     const opts=shuffle([ans, ans+diff, ans-diff, ans+2]); return {t:`${a} ${op} ${b} = ?`, opts:opts.map(String), ok:opts.indexOf(ans)}; }
-  if(type==="mult"){ const a=rint(2, 2+diff), b=rint(2, 3+diff); const ans=a*b; const opts=shuffle([ans, ans+diff, ans-2, ans+3]).map(String);
-    return {t:`${a} × ${b} = ?`, opts, ok:opts.indexOf(String(ans))}; }
-  if(type==="frac"){ const d=rint(2, 5+Math.floor(diff/2)), n1=rint(1,d-1), n2=rint(1,d-1); const ans=(n1+n2)+'/'+d;
+
+  if(type==="mult"){ const a=rint(2, 2+Math.floor(diff*1.5)), b=rint(2, 3+Math.floor(diff*1.5)); const ans=a*b;
+    const opts=shuffle([ans, ans+diff, ans-2, ans+3]).map(String); return {t:`${a} × ${b} = ?`, opts, ok:opts.indexOf(String(ans))}; }
+
+  if(type==="frac"){ const d=rint(2, 4+Math.floor(diff/2)), n1=rint(1,d-1), n2=rint(1,d-1); const ans=(n1+n2)+'/'+d;
     const opts=shuffle([ans,(n1+n2+1)+'/'+d,(n1+n2-1)+'/'+d,(n1)+'/'+d]); return {t:`${n1}/${d} + ${n2}/${d} = ?`, opts, ok:opts.indexOf(ans)}; }
-  if(type==="pct"){ const base=rint(60,60+diff*35), p=rint(5, 10+diff*5); const ans=Math.round(base*p/100);
-    const opts=shuffle([ans, ans+10, ans-10, ans+20]).map(String); return {t:`${p}% de ${base} = ?`, opts, ok:opts.indexOf(String(ans))}; }
+
+  if(type==="pct"){ const base=rint(Math.max(40,Math.floor(N*0.6)), N), p=rint(5, 10+diff*5);
+    const ans=Math.round(base*p/100); const opts=shuffle([ans, ans+10, ans-10, ans+20]).map(String);
+    return {t:`${p}% de ${base} = ?`, opts, ok:opts.indexOf(String(ans))}; }
+
   if(type==="exp"){ const a=rint(2,3+Math.floor(diff/3)), e=rint(2,3+Math.floor(diff/4)); const ans=String(a**e);
-    const opts=shuffle([ans, String(a**(e-1)), String((a+1)**e), String(a**e + a)]); return {t:`${a}<sup>${e}</sup> = ?`, html:true, opts, ok:opts.indexOf(ans)}; }
+    const opts=shuffle([ans, String(a**(e-1)), String((a+1)**e), String(a**e + a)]);
+    return {t:`${a}<sup>${e}</sup> = ?`, html:true, opts, ok:opts.indexOf(ans)}; }
+
   if(type==="eq"){ const x=rint(1,6+diff), a=rint(1,6+diff), b=rint(1,6+diff), c=a*x+b; const ans=x;
     const opts=shuffle([x,x+1,x-1,x+2]).map(String); return {t:`Résous: ${a}x + ${b} = ${c}. x = ?`, opts, ok:opts.indexOf(String(ans))}; }
 }
-function qFr(diff){
-  if(diff<4){ const words=[["le","chat"],["la","maison"],["l'","école"],["les","enfants"]]; const [art,nom]=words[rint(0,words.length-1)];
+
+function qFr(level, diff){
+  if(level==="Primaire"){ const words=[["le","chat"],["la","maison"],["l'","école"],["les","enfants"]]; const [art,nom]=words[rint(0,words.length-1)];
     const opts=shuffle([art,"le","la","l'","les"]); return {t:`Complète : ___ ${nom}`, opts, ok:opts.indexOf(art)}; }
-  const prono=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], v="manger";
-  const good = prono==="Je"?"mange":prono==="Tu"?"manges":(prono==="Il"||prono==="Elle")?"mange":prono==="Nous"?"mangeons":prono==="Vous"?"mangez":"mangent";
-  const opts=shuffle([good,"manger","mangea","mangera"]); return {t:`Conjugue <b>${v}</b> au présent pour « ${prono} »`, html:true, opts, ok:opts.indexOf(good)};
+  if(level==="6e"||level==="5e"){ const pr=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], v="manger";
+    const good = pr==="Je"?"mange":pr==="Tu"?"manges":(pr==="Il"||pr==="Elle")?"mange":pr==="Nous"?"mangeons":pr==="Vous"?"mangez":"mangent";
+    const opts=shuffle([good,"manger","mangea","mangera"]); return {t:`Conjugue <b>${v}</b> (présent) pour « ${pr} »`, html:true, opts, ok:opts.indexOf(good)}; }
+  // 4e/3e/Lycée : accord/temps simple
+  const sents=[["Les chien__ courent.","s"],["Elle prenn__ le bus.","d"],["Nous mange__ demain (futur proche).","ons"]];
+  const [txt,miss]=sents[rint(0,sents.length-1)]; const choices=shuffle([miss,"e","ent","ez"]);
+  return {t:`Complète : ${txt}`, opts:choices, ok:choices.indexOf(miss)};
 }
-function qSci(){ const a={t:"Planète rouge ?",a:"Mars",w:["Jupiter","Vénus","Mercure"]}; const opts=shuffle([a.a,...a.w]); return {t:a.t,opts,ok:opts.indexOf(a.a)}; }
+function qSci(level){ const base=[["Planète rouge ?","Mars",["Jupiter","Vénus","Mercure"]],
+                                   ["Étoile la plus proche ?","Soleil",["Sirius","Polaris","Véga"]]];
+  const hard=[["Unité SI de force ?","Newton",["Joule","Pascal","Watt"]],
+              ["Formule de l’eau ?","H2O",["CO2","O2","NaCl"]]];
+  const pool = (level==="Lycée"||level==="3e"||level==="4e") ? base.concat(hard) : base;
+  const [q,a,wr]=pool[rint(0,pool.length-1)]; const opts=shuffle([a,...wr]); return {t:q, opts, ok:opts.indexOf(a)};
+}
+
 function genAdaptive(level,subject){
   const pool = subject==="Mix" ? ["Maths","Français","Sciences"][rint(0,2)] : subject;
-  if(pool==="Maths") return qMath(state.diff);
-  if(pool==="Français") return qFr(state.diff);
-  if(pool==="Sciences") return qSci();
-  return qMath(state.diff);
+  if(pool==="Maths") return qMath(level, state.diff);
+  if(pool==="Français") return qFr(level, state.diff);
+  if(pool==="Sciences") return qSci(level);
+  if(pool==="Anglais") return qLangBasic(); // redirige sur module langues
+  return qMath(level, state.diff);
 }
+
 $('#aiStart').onclick=()=>{
-  state.diff=baseDiffFor($('#level').value); state.total=0; state.good=0; aiMeta();
+  state.diff=baseDiffFor($('#level').value);
+  state.total=0; state.good=0; aiMeta();
   const zone=$('#aiZone'); zone.innerHTML=''; let i=0;
   function ask(){
     zone.innerHTML='';
@@ -262,11 +271,8 @@ $('#aiStart').onclick=()=>{
     q.opts.forEach((o,idx)=>{
       const b=document.createElement('button'); b.className='opt'; b.innerHTML=o;
       b.onclick=()=>{
-        state.total++;
-        if(idx===q.ok){ state.good++; state.diff=Math.min(10,state.diff+1); b.classList.add('ok'); addCoins(3); }
-        else { state.diff=Math.max(1,state.diff-1); b.classList.add('bad'); }
-        aiMeta();
-        setTimeout(()=>{ if(i<9){ i++; ask(); } else { zone.innerHTML=`<div class="kpi"><span class="muted">Résultat</span> • <b>${state.good}/10</b> • Diff finale: <b>${state.diff}</b></div>`; } }, 550);
+        state.total++; if(idx===q.ok){ state.good++; state.diff=Math.min(10,state.diff+1); b.classList.add('ok'); } else { state.diff=Math.max(1,state.diff-1); b.classList.add('bad'); }
+        aiMeta(); setTimeout(()=>{ if(i<9){ i++; ask(); } else { zone.innerHTML=`<div class="kpi"><span class="muted">Résultat</span> • <b>${state.good}/10</b> • Diff finale: <b>${state.diff}</b></div>`; } }, 550);
       };
       zone.append(b);
     });
@@ -274,39 +280,7 @@ $('#aiStart').onclick=()=>{
   ask();
 };
 
-/* ===== Programmation (Premium) — part de 0 et monte à chaque réussite ===== */
-function qProg(level){
-  const L=[];
-  L.push(()=>({desc:"Retourne la somme a+b", sig:"function solve(a,b){ /* ton code */ }", tests:[[1,2,3],[5,7,12],[0,0,0]]}));
-  L.push(()=>({desc:"Vrai si n est pair", sig:"function solve(n){ /* ton code */ }", tests:[[2,true],[9,false],[0,true]]}));
-  L.push(()=>({desc:"Somme d'un tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,2,3],6],[[0,0],0],[[-1,1],0]]}));
-  L.push(()=>({desc:"Max d'un tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,5,2],5],[[9,3,-1],9],[[7],7]]}));
-  L.push(()=>({desc:"Inverse une chaîne", sig:"function solve(s){ /* ton code */ }", tests:[["abc","cba"],["kayak","kayak"],["JS","SJ"]]}));
-  L.push(()=>({desc:"Palindrome (ignore espaces/majuscules)", sig:"function solve(s){ /* ton code */ }", tests:[["A man a plan a canal Panama",true],["kayak",true],["test",false]]}));
-  L.push(()=>({desc:"Fréquence des lettres (retourne objet)", sig:"function solve(s){ /* ton code */ }", tests:[["aba",{"a":2,"b":1}]]}));
-  return L[Math.min(level-1, L.length-1)]();
-}
-let codeLevel=1, curTask=null;
-function newCodeTask(){ curTask=qProg(codeLevel); $('#codeTask').innerHTML=`<b>Niveau ${codeLevel}</b> — ${curTask.desc}<br/><b>Signature :</b><pre class="code" style="margin-top:6px">${curTask.sig}</pre>`; $('#codeArea').value=curTask.sig+"\n"; }
-function evalUser(code){
-  try{
-    const f = new Function(code + "; return typeof solve==='function'?solve:null;");
-    const solve = f();
-    if(!solve) return "❌ Tu dois définir solve(...)";
-    for(const t of curTask.tests){
-      const input = Array.isArray(t[0]) && t.length===2 ? t[0] : (t.length===3 ? [t[0],t[1]] : t.slice(0,t.length-1));
-      const expected = t[t.length-1];
-      const got = Array.isArray(input) ? solve(...input) : solve(input);
-      if(JSON.stringify(got)!==JSON.stringify(expected)) return `❌ Test raté. Entrée=${JSON.stringify(input)} • Attendu=${JSON.stringify(expected)} • Obtenu=${JSON.stringify(got)}`;
-    }
-    codeLevel = Math.min(codeLevel+1, 7);
-    addCoins(10);
-    return "✅ Tous les tests OK ! (+10 🪙) → Niveau suivant";
-  }catch(e){ return "Erreur: "+e.message; }
-}
-$('#runCode').onclick=()=>{ if(!premium){ alert("Premium requis."); return; } const res=evalUser($('#codeArea').value); $('#codeFeedback').textContent=res; if(res.startsWith("✅")) newCodeTask(); };
-
-/* ===== Langues — sélecteur multi (FR/EN/ES/DE) ===== */
+/* ===== Langues (sélecteur FR/EN/ES/DE) ===== */
 const VOCAB = {
   EN:{FR:[["cat","chat"],["dog","chien"],["house","maison"],["book","livre"],["blue","bleu"]],
       ES:[["cat","gato"],["dog","perro"],["house","casa"],["book","libro"],["blue","azul"]],
@@ -321,52 +295,89 @@ const VOCAB = {
       FR:[["Katze","chat"],["Hund","chien"],["Haus","maison"],["Buch","livre"],["blau","bleu"]],
       ES:[["Katze","gato"],["Hund","perro"],["Haus","casa"],["Buch","libro"],["blau","azul"]]}
 };
-let langLevel = 1; // progresse avec bonnes réponses
-function langBasic(){
+let langLv=1;
+function setLangMeta(){ $('#langMeta').textContent=`${$('#langFrom').value} → ${$('#langTo').value} • Lv ${langLv}`; }
+function qLangBasic(){
   const from=$('#langFrom').value, to=$('#langTo').value;
   const pairs = (VOCAB[from] && VOCAB[from][to]) ? VOCAB[from][to] : [];
-  if(!pairs.length){ $('#langFree').innerHTML='<div class="muted">Combinaison non supportée.</div>'; return; }
+  if(!pairs.length){ return {t:"Combinaison non supportée.", opts:["—"], ok:0}; }
   const [src,dst]=pairs[rint(0,pairs.length-1)];
+  const wrong = shuffle(pairs.filter(([s])=>s!==src).map(([,d])=>d)).slice(0,3);
+  const choices = shuffle([dst, ...wrong]);
+  return {t:`Traduire <b>${src}</b> → ${to}`, html:true, opts:choices, ok:choices.indexOf(dst)};
+}
+function renderLangFree(){
   const root=$('#langFree'); root.innerHTML='';
-  const p=document.createElement('div'); p.innerHTML=`Traduire <b>${src}</b> → ${to}`; root.append(p);
-  const wrong = pairs.filter(([s])=>s!==src).map(([,d])=>d);
-  const choices = shuffle([dst, ...(shuffle(wrong).slice(0,3))]);
-  choices.forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c;
-    b.onclick=()=>{ if(c===dst){ b.classList.add('ok'); langLevel=Math.min(langLevel+1,10); addCoins(2); } else b.classList.add('bad'); setTimeout(langBasic,600); };
+  const q=qLangBasic(); setLangMeta();
+  const p=document.createElement('div'); p.innerHTML=q.html? q.t : q.t; root.append(p);
+  q.opts.forEach((c,idx)=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c;
+    b.onclick=()=>{ if(idx===q.ok){ b.classList.add('ok'); langLv=Math.min(langLv+1,10); } else { b.classList.add('bad'); langLv=Math.max(1,langLv-1); }
+      setTimeout(renderLangFree,600); };
     root.append(b);
   });
 }
-function langPlus(){
+
+/* Langues Plus (Premium): selon le niveau, on ajoute cloze/phrases/conjugaison */
+function renderLangPlus(){
   const root=$('#langPlus'); root.innerHTML='';
   if(!premium){ root.innerHTML='<div class="muted">🔒 Premium requis.</div>'; return; }
-  const mode=["phrase","conjug","cloze"][rint(0,2)];
-  const from=$('#langFrom').value, to=$('#langTo').value;
+  const mode = langLv<4 ? "phrase" : langLv<7 ? "conjug" : "cloze";
   if(mode==="phrase"){
     const who=["I","You","He","She","We","They"][rint(0,5)], verb=["like","see","eat","have"][rint(0,3)], obj=["apples","cats","music","books"][rint(0,3)];
-    const sent=`${who} ${verb} ${obj}.`; const target=(to==="FR"?"français":to);
-    const p=document.createElement('div'); p.innerHTML=`Traduire en <b>${target}</b> : « ${sent} »`; root.append(p);
+    const sent=`${who} ${verb} ${obj}.`;
+    const variants=["Nous mange livres.","Je vois pommes.","Elle aime musique."];
     const goodFR=(who==="He"||who==="She"?"Il/Elle":"Je/Nous/Ils")+" "+(verb==="like"?"aime":verb==="see"?"vois":verb==="eat"?"mange":"ai")+" "+(obj==="apples"?"des pommes":obj==="cats"?"les chats":obj==="music"?"la musique":"des livres")+".";
-    const choices=shuffle([goodFR,"Nous mange livres.","Je vois pommes.","Elle aime musique."]);
-    choices.forEach(x=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=x; b.onclick=()=>{ b.classList.toggle('ok',x===goodFR); if(x===goodFR){ addCoins(3); langLevel=Math.min(langLevel+1,10);} setTimeout(langPlus,700); }; root.append(b); });
+    const choices=shuffle([goodFR,...variants]);
+    const p=document.createElement('div'); p.innerHTML=`Traduire en FR : « ${sent} »`; root.append(p);
+    choices.forEach(x=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=x; b.onclick=()=>{ b.classList.toggle('ok',x===goodFR); if(x===goodFR){ langLv=Math.min(langLv+1,10); } setTimeout(renderLangPlus,700); }; root.append(b); });
   } else if(mode==="conjug"){
     const pr=["Je","Tu","Il","Elle","Nous","Vous","Ils"][rint(0,6)], base="aller";
     const good = {Je:"vais",Tu:"vas",Il:"va",Elle:"va",Nous:"allons",Vous:"allez",Ils:"vont"}[pr];
     const p=document.createElement('div'); p.innerHTML=`Conjugue <b>${base}</b> (présent) pour « ${pr} »`; root.append(p);
-    shuffle([good,"aller","ira","allait"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===good); if(c===good){ addCoins(3); langLevel=Math.min(langLevel+1,10);} setTimeout(langPlus,700); }; root.append(b); });
+    shuffle([good,"aller","ira","allait"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===good); if(c===good){ langLv=Math.min(langLv+1,10); } setTimeout(renderLangPlus,700); }; root.append(b); });
   } else {
-    // Cloze (trou) simple EN→FR
     const sents=[["I __ apples.","like"],["She __ a book.","has"],["We __ music.","like"]];
     const [s,miss]=sents[rint(0,sents.length-1)];
     const p=document.createElement('div'); p.textContent=`Complète : ${s}`; root.append(p);
-    shuffle([miss,"is","are","am"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===miss); if(c===miss){ addCoins(3); langLevel=Math.min(langLevel+1,10);} setTimeout(langPlus,700); }; root.append(b); });
+    shuffle([miss,"is","are","am"]).forEach(c=>{ const b=document.createElement('button'); b.className='opt'; b.textContent=c; b.onclick=()=>{ b.classList.toggle('ok',c===miss); if(c===miss){ langLv=Math.min(langLv+1,10); } setTimeout(renderLangPlus,700); }; root.append(b); });
   }
 }
 
-/* ===== Quiz prédéfinis ===== */
+/* ===== Programmation (Premium) — démarre niveau 1 et monte à chaque réussite ===== */
+let codeLevel=1, curTask=null;
+function qProg(level){
+  const L=[];
+  L.push(()=>({desc:"Retourne la somme a+b", sig:"function solve(a,b){ /* ton code */ }", tests:[[1,2,3],[5,7,12],[0,0,0]]}));
+  L.push(()=>({desc:"Vrai si n est pair", sig:"function solve(n){ /* ton code */ }", tests:[[2,true],[9,false],[0,true]]}));
+  L.push(()=>({desc:"Somme d'un tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,2,3],6],[[0,0],0],[[-1,1],0]]}));
+  L.push(()=>({desc:"Max d'un tableau", sig:"function solve(arr){ /* ton code */ }", tests:[[[1,5,2],5],[[9,3,-1],9],[[7],7]]}));
+  L.push(()=>({desc:"Inverse une chaîne", sig:"function solve(s){ /* ton code */ }", tests:[["abc","cba"],["kayak","kayak"],["JS","SJ"]]}));
+  L.push(()=>({desc:"Palindrome (ignorer espaces/majuscules)", sig:"function solve(s){ /* ton code */ }", tests:[["A man a plan a canal Panama",true],["kayak",true],["test",false]]}));
+  L.push(()=>({desc:"Fréquence des lettres (retourne objet)", sig:"function solve(s){ /* ton code */ }", tests:[["aba",{"a":2,"b":1}]]}));
+  return L[Math.min(level-1, L.length-1)]();
+}
+function newCodeTask(){ curTask=qProg(codeLevel); $('#codeTask').innerHTML=`<b>Niveau ${codeLevel}</b> — ${curTask.desc}<br/><b>Signature :</b><pre class="code" style="margin-top:6px">${curTask.sig}</pre>`; $('#codeArea').value=curTask.sig+"\n"; }
+function evalUser(code){
+  try{
+    const f = new Function(code + "; return typeof solve==='function'?solve:null;");
+    const solve = f();
+    if(!solve) return "❌ Tu dois définir solve(...)";
+    for(const t of curTask.tests){
+      const input = Array.isArray(t[0]) && t.length===2 ? t[0] : (t.length===3 ? [t[0],t[1]] : t.slice(0,t.length-1));
+      const expected = t[t.length-1];
+      const got = Array.isArray(input) ? solve(...input) : solve(input);
+      if(JSON.stringify(got)!==JSON.stringify(expected)) return `❌ Test raté. Entrée=${JSON.stringify(input)} • Attendu=${JSON.stringify(expected)} • Obtenu=${JSON.stringify(got)}`;
+    }
+    codeLevel = Math.min(codeLevel+1, 7);
+    return "✅ Tous les tests OK ! → Niveau suivant";
+  }catch(e){ return "Erreur: "+e.message; }
+}
+$('#runCode').onclick=()=>{ if(!premium){ alert("Premium requis."); return; } const res=evalUser($('#codeArea').value); $('#codeFeedback').textContent=res; if(res.startsWith("✅")) newCodeTask(); };
+
+/* ===== Quiz prédéfinis (petite base) ===== */
 const QUIZ_DB=[
-  { level:"Primaire", subject:"Maths", title:"Additions", q:[{t:"2 + 3 = ?", opts:["4","5","6","7"], ok:1},{t:"5 + 5 = ?", opts:["9","10","11","12"], ok:1}]},
   { level:"6e", subject:"Maths", title:"Fractions", q:[{t:"1/2 + 1/2 = ?", opts:["1/4","1","2","1/2"], ok:1},{t:"La moitié de 12", opts:["4","6","8","12"], ok:1}]},
-  { level:"6e", subject:"Sciences", title:"Corps humain", q:[{t:"Organe qui pompe le sang ?", opts:["Poumon","Foie","Cœur","Rein"], ok:2},{t:"Os du bras ?", opts:["Tibia","Humérus","Crâne","Vertèbre"], ok:1}]},
+  { level:"Lycée", subject:"Informatique", title:"Logique", q:[{t:"true AND false = ?", opts:["true","false"], ok:1},{t:"NOT(true OR false) = ?", opts:["true","false"], ok:1}]},
 ];
 let quizIndex=0;
 function listQuiz(){ return QUIZ_DB.filter(q=> q.level===$('#level').value && q.subject===$('#subject').value); }
@@ -382,44 +393,16 @@ function renderQuiz(){
 $('#prevQuiz').onclick=()=>{ const l=listQuiz(); if(!l.length) return; quizIndex=(quizIndex-1+l.length)%l.length; renderQuiz(); };
 $('#nextQuiz').onclick=()=>{ const l=listQuiz(); if(!l.length) return; quizIndex=(quizIndex+1)%l.length; renderQuiz(); };
 
-/* ===== Roue / Sondage / Tirage / Timer ===== */
-function renderWheel(){
-  const svg=$('#wheel'); svg.innerHTML='';
-  const opts=$$('.wheelOpt').map(i=>i.value.trim()).filter(Boolean);
-  const seg=Math.max(1,opts.length||6), per=360/seg;
-  for(let i=0;i<seg;i++){
-    const start=(i*per-90)*Math.PI/180, end=((i+1)*per-90)*Math.PI/180;
-    const x1=50+50*Math.cos(start), y1=50+50*Math.sin(start);
-    const x2=50+50*Math.cos(end), y2=50+50*Math.sin(end);
-    const large=per>180?1:0;
-    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
-    p.setAttribute('d',`M50,50 L${x1},${y1} A50,50 0 ${large} 1 ${x2},${y2} Z`);
-    p.setAttribute('fill',`hsl(${(i*60)%360},70%,55%)`); p.setAttribute('opacity','.95'); svg.append(p);
-    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-    t.setAttribute('x','50'); t.setAttribute('y','50'); t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','4'); t.setAttribute('fill','#041014');
-    t.setAttribute('transform',`rotate(${i*per+per/2} 50 50) translate(0 -34)`); t.textContent=(opts[i]||('Opt '+(i+1))).slice(0,10); svg.append(t);
-  }
-}
-$$('.wheelOpt').forEach(i=> i.addEventListener('input', renderWheel));
-renderWheel();
-let angle=0, spinning=false;
-$('#spin').onclick=()=>{
-  const opts=$$('.wheelOpt').map(i=>i.value.trim()).filter(Boolean);
-  const seg=Math.max(1,opts.length||6); if(spinning||seg===0) return; spinning=true; $('#winner').textContent='';
-  const per=360/seg, target=Math.floor(Math.random()*seg), extra=360*5; angle += extra + (target+.5)*per;
-  const svg=$('#wheel'); svg.style.transition='transform 3.2s cubic-bezier(.2,.9,.2,1)'; requestAnimationFrame(()=> svg.style.transform=`rotate(${angle}deg)`);
-  setTimeout(()=>{ svg.style.transition='none'; spinning=false; $('#winner').textContent='Gagnant : '+(opts[target]||('Option '+(target+1))); }, 3300);
-};
-
+/* ===== Sondage / Tirage / Timer (basique) ===== */
 const POLL={ title:"Aimes-tu FunMaker ?", options:["Oui","Non","Bof","Je ne sais pas"], votes:[0,0,0,0] };
 $('#pollTitle').value=POLL.title; $('#pollTitle').oninput=e=>POLL.title=e.target.value;
 function drawPoll(){ const root=$('#poll'); root.innerHTML=''; const title=document.createElement('div'); title.className='muted'; title.textContent=POLL.title; root.append(title);
   POLL.options.forEach((opt,i)=>{ const row=document.createElement('div'); row.style.margin='8px 0';
     const top=document.createElement('div'); top.className='row'; const btn=document.createElement('button'); btn.className='btn'; btn.textContent='Voter';
     const lab=document.createElement('div'); lab.textContent=opt; lab.style.flex='1'; btn.onclick=()=>{ POLL.votes[i]++; updateBars(); };
-    top.append(lab,btn); row.append(top); const bar=document.createElement('div'); bar.className='bar'; const fill=document.createElement('div'); bar.append(fill); row.append(bar); root.append(row); });
+    top.append(lab,btn); row.append(top); const bar=document.createElement('div'); bar.style.height='8px'; bar.style.background='#222538'; bar.style.borderRadius='999px'; const fill=document.createElement('div'); fill.style.height='8px'; fill.style.background='linear-gradient(90deg,var(--brand),var(--brand2))'; bar.append(fill); row.append(bar); root.append(row); });
   updateBars(); }
-function updateBars(){ const tot=POLL.votes.reduce((a,b)=>a+b,0)||1; $$('#poll .bar').forEach((b,i)=>{ b.firstChild.style.width=Math.round((POLL.votes[i]/tot)*100)+'%'; }); }
+function updateBars(){ const bars=$$('#poll div[style*="height: 8px"]'); const tot=POLL.votes.reduce((a,b)=>a+b,0)||1; bars.forEach((b,i)=>{ const f=b.firstChild; f.style.width=Math.round((POLL.votes[i]/tot)*100)+'%'; }); }
 drawPoll();
 
 $('#drawBtn').onclick=()=>{ const arr=$('#drawInput').value.split(',').map(s=>s.trim()).filter(Boolean);
@@ -431,16 +414,14 @@ let tIv=null; $('#timerGo').onclick=()=>{ clearInterval(tIv); let s=(parseInt($(
   tick(); tIv=setInterval(tick,1000); };
 
 /* ===== Init ===== */
-function refreshAll(){ renderQuiz(); renderWheel(); langBasic(); langPlus(); if(premium){ newCodeTask(); } aiMeta(); showCoins(); }
+function refreshAll(){ renderQuiz(); renderLangFree(); renderLangPlus(); if(premium){ newCodeTask(); } aiMeta(); }
 $('#startPack').onclick=refreshAll;
-window.addEventListener('load', ()=>{ // set base diff on load
-  state.diff=baseDiffFor($('#level').value);
-  updatePremiumUI(); showCoins(); refreshAll();
-});
+window.addEventListener('load', ()=>{ state.diff=baseDiffFor($('#level').value); updatePremiumUI(); refreshAll(); });
 $('#level').addEventListener('change', ()=>{ state.diff=baseDiffFor($('#level').value); aiMeta(); renderQuiz(); });
 $('#subject').addEventListener('change', renderQuiz);
-$('#langFrom').addEventListener('change', ()=>{ langBasic(); langPlus(); });
-$('#langTo').addEventListener('change', ()=>{ langBasic(); langPlus(); });
+$('#langFrom').addEventListener('change', ()=>{ renderLangFree(); renderLangPlus(); });
+$('#langTo').addEventListener('change', ()=>{ renderLangFree(); renderLangPlus(); });
 </script>
 </body>
 </html>
+
